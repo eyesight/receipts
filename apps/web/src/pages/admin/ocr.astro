@@ -45,23 +45,15 @@ const statusClass: Record<string, string> = {
             <table class="w-full text-sm">
               <thead class="bg-stone-50 text-left text-xs font-medium uppercase tracking-wide text-stone-500">
                 <tr>
-                  <th class="px-4 py-3">Bild</th>
                   <th class="px-4 py-3">Status</th>
                   <th class="px-4 py-3">Rezept</th>
                   <th class="px-4 py-3">Datum</th>
+                  <th class="px-4 py-3"></th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-stone-100">
                 {imports.map((imp) => (
                   <tr class="hover:bg-stone-50">
-                    <td class="px-4 py-3">
-                      <img
-                        src={imp.imageUrl}
-                        alt=""
-                        class="h-12 w-12 rounded object-cover"
-                        onerror="this.style.display='none'"
-                      />
-                    </td>
                     <td class="px-4 py-3">
                       <span
                         class={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${statusClass[imp.status] ?? "bg-stone-100 text-stone-600"}`}
@@ -95,6 +87,13 @@ const statusClass: Record<string, string> = {
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
+                    </td>
+                    <td class="px-4 py-3">
+                      {imp.recipe && (
+                        <a href={`/admin/recipes/${imp.recipe.slug}/edit`} class="text-xs text-stone-400 underline hover:text-stone-700">
+                          bearbeiten
+                        </a>
+                      )}
                     </td>
                   </tr>
                 ))}

@@ -4,7 +4,9 @@
       "Bash(pnpm install *)",
       "Bash(npm install *)",
       "Bash(npx pnpm *)",
-      "Bash(pnpm --version)"
+      "Bash(pnpm --version)",
+      "Bash(pnpm type-check *)",
+      "Bash(pnpm exec *)"
     ]
   }
 }

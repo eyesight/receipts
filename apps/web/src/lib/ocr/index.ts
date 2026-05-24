@@ -96,7 +96,7 @@ export async function extractRecipeFromImage(
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 4096,
+    max_tokens: 8192,
     system: [
       {
         type: 'text',
@@ -126,7 +126,10 @@ export async function extractRecipeFromImage(
     ],
   });
 
-  const text = response.content[0].type === 'text' ? response.content[0].text : '';
+  const raw = response.content[0].type === 'text' ? response.content[0].text : '';
+
+  // Strip markdown code fences if Claude added them despite instructions
+  const text = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '').trim();
 
   try {
     return JSON.parse(text) as ExtractedRecipe;

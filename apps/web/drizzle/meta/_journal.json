@@ -8,6 +8,13 @@
       "when": 1779621758535,
       "tag": "0000_initial",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1779656666066,
+      "tag": "0001_dazzling_alex_power",
+      "breakpoints": true
     }
   ]
 }

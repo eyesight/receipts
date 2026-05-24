@@ -42,7 +42,7 @@ async function uniqueRecipeSlug(base: string): Promise<string> {
 export async function saveOcrRecipe(
   extracted: ExtractedRecipe,
   ocrImportId: string,
-  imageUrl: string
+  createdBy?: string
 ): Promise<{ slug: string; title: string }> {
   // Find or create category
   let categoryId: string | null = null;
@@ -88,9 +88,9 @@ export async function saveOcrRecipe(
       totalTime,
       difficulty: extracted.difficulty ?? undefined,
       categoryId: categoryId ?? undefined,
-      imageUrl,
       source: extracted.source ?? undefined,
       sourceType: 'ocr',
+      createdBy,
       isPublished: false,
     })
     .returning({ id: recipes.id, slug: recipes.slug, title: recipes.title });

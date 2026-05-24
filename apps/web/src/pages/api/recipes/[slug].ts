@@ -46,6 +46,7 @@ interface RecipeInput {
   category: string | null;
   source: string | null;
   isPublished: boolean;
+  createdBy?: string | null;
   ingredients: IngredientInput[];
   steps: StepInput[];
   tags: string[];
@@ -106,6 +107,7 @@ export const PATCH: APIRoute = async ({ params, request }) => {
       difficulty: body.difficulty ?? undefined,
       categoryId: categoryId ?? undefined,
       source: body.source ?? undefined,
+      createdBy: body.createdBy ?? undefined,
       isPublished: body.isPublished,
       updatedAt: new Date(),
     })

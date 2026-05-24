@@ -100,6 +100,7 @@ export const recipes = pgTable(
     imageUrl: varchar('image_url'),
     source: varchar('source'),
     sourceType: sourceTypeEnum('source_type').default('manual').notNull(),
+    createdBy: varchar('created_by'),
     isPublished: boolean('is_published').default(false).notNull(),
     viewCount: integer('view_count').default(0).notNull(),
     favoriteCount: integer('favorite_count').default(0).notNull(),
@@ -113,6 +114,7 @@ export const recipes = pgTable(
   },
   (table) => [
     index('recipes_slug_idx').on(table.slug),
+    index('recipes_created_by_idx').on(table.createdBy),
     index('recipes_category_id_idx').on(table.categoryId),
     index('recipes_is_published_idx').on(table.isPublished),
     index('recipes_difficulty_idx').on(table.difficulty),
