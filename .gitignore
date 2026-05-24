@@ -32,3 +32,6 @@ pnpm-debug.log*
 
 # Cloudflare
 .wrangler/
+
+# Import script data
+apps/web/src/scripts/import-samsung-food/data/

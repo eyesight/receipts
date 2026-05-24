@@ -12,7 +12,11 @@
     "clean": "rm -rf dist .astro",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx src/lib/db/seed.ts",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "import:crawl": "tsx src/scripts/import-samsung-food/crawl.ts",
+    "import:fetch": "tsx src/scripts/import-samsung-food/fetch.ts",
+    "import:db": "tsx src/scripts/import-samsung-food/import.ts",
+    "import:cleanup": "tsx src/scripts/import-samsung-food/cleanup.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",
@@ -33,6 +37,7 @@
     "@types/node": "^25.9.1",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "cheerio": "^1.2.0",
     "drizzle-kit": "^0.31.10",
     "tailwindcss": "^3.4.0",
     "tsx": "^4.22.3",

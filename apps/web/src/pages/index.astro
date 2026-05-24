@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getRecipes } from "@/lib/db/queries";
 
-const recipes = await getRecipes({ isPublished: false });
+const recipes = await getRecipes({ isPublished: false, limit: 1000 });
 ---
 
 <BaseLayout title="Rezepte">
