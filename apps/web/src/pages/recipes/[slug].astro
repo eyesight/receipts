@@ -1,0 +1,153 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getRecipeBySlug } from "@/lib/db/queries";
+
+const { slug } = Astro.params;
+const recipe = await getRecipeBySlug(slug!);
+
+if (!recipe) return Astro.redirect("/");
+
+const totalTime = (recipe.prepTime ?? 0) + (recipe.cookTime ?? 0);
+
+const difficultyLabel: Record<string, string> = {
+  easy: "Einfach",
+  medium: "Mittel",
+  hard: "Schwer",
+};
+---
+
+<BaseLayout title={recipe.title}>
+  <article class="mx-auto max-w-2xl space-y-10">
+
+    <!-- Header -->
+    <div class="space-y-3">
+      {recipe.category && (
+        <p class="text-sm font-medium uppercase tracking-wide text-stone-400">
+          {recipe.category.name}
+        </p>
+      )}
+      <h1 class="text-3xl font-bold tracking-tight">{recipe.title}</h1>
+      {recipe.description && (
+        <p class="text-stone-600">{recipe.description}</p>
+      )}
+
+      <!-- Meta row -->
+      <dl class="flex flex-wrap gap-6 pt-1 text-sm">
+        {recipe.servings && (
+          <div>
+            <dt class="text-stone-400">Portionen</dt>
+            <dd class="font-medium">{recipe.servings}</dd>
+          </div>
+        )}
+        {recipe.prepTime && (
+          <div>
+            <dt class="text-stone-400">Vorbereitung</dt>
+            <dd class="font-medium">{recipe.prepTime} Min.</dd>
+          </div>
+        )}
+        {recipe.cookTime && (
+          <div>
+            <dt class="text-stone-400">Kochzeit</dt>
+            <dd class="font-medium">{recipe.cookTime} Min.</dd>
+          </div>
+        )}
+        {totalTime > 0 && (
+          <div>
+            <dt class="text-stone-400">Gesamt</dt>
+            <dd class="font-medium">{totalTime} Min.</dd>
+          </div>
+        )}
+        {recipe.difficulty && (
+          <div>
+            <dt class="text-stone-400">Schwierigkeit</dt>
+            <dd class="font-medium">{difficultyLabel[recipe.difficulty]}</dd>
+          </div>
+        )}
+      </dl>
+
+      <!-- Tags -->
+      {recipe.recipeTags.length > 0 && (
+        <div class="flex flex-wrap gap-2 pt-1">
+          {recipe.recipeTags.map(({ tag }) => (
+            <span class="rounded-full bg-stone-100 px-3 py-0.5 text-xs text-stone-600">
+              {tag.name}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <!-- Image -->
+    {recipe.imageUrl && (
+      <img
+        src={recipe.imageUrl}
+        alt={recipe.title}
+        class="w-full rounded-lg object-cover shadow"
+        style="max-height: 400px"
+      />
+    )}
+
+    <!-- Ingredients -->
+    {recipe.recipeIngredients.length > 0 && (
+      <section>
+        <h2 class="mb-4 text-lg font-semibold">Zutaten</h2>
+        <ul class="space-y-2">
+          {recipe.recipeIngredients.map(({ ingredient, amount, unit, note, isOptional }) => (
+            <li class="flex gap-3 text-sm">
+              <span class="w-20 shrink-0 text-right text-stone-500">
+                {amount ? Number(amount) % 1 === 0 ? Number(amount) : amount : ""}
+                {unit && ` ${unit}`}
+              </span>
+              <span class={isOptional ? "text-stone-400" : ""}>
+                {ingredient.name}
+                {note && <span class="text-stone-400"> ({note})</span>}
+                {isOptional && <span class="text-stone-400"> (optional)</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <!-- Steps -->
+    {recipe.recipeSteps.length > 0 && (
+      <section>
+        <h2 class="mb-4 text-lg font-semibold">Zubereitung</h2>
+        <ol class="space-y-6">
+          {recipe.recipeSteps.map((step) => (
+            <li class="flex gap-4">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-900 text-xs font-bold text-white">
+                {step.order}
+              </span>
+              <div class="space-y-1 pt-0.5">
+                {step.title && <p class="font-medium">{step.title}</p>}
+                <p class="text-stone-700">{step.description}</p>
+                {step.tip && (
+                  <p class="rounded bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                    💡 {step.tip}
+                  </p>
+                )}
+                {step.duration && (
+                  <p class="text-xs text-stone-400">{step.duration} Min.</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    <!-- Source -->
+    {recipe.source && (
+      <p class="text-xs text-stone-400">Quelle: {recipe.source}</p>
+    )}
+
+    <a
+      href={`/admin/recipes/${recipe.slug}/edit`}
+      class="inline-block text-sm text-stone-400 underline hover:text-stone-700"
+    >
+      Rezept bearbeiten
+    </a>
+
+  </article>
+</BaseLayout>

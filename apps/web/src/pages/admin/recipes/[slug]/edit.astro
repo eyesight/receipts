@@ -1,0 +1,58 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import RecipeEditForm from "@/components/react/RecipeEditForm";
+import { getRecipeBySlug } from "@/lib/db/queries";
+
+const { slug } = Astro.params;
+const recipe = await getRecipeBySlug(slug!);
+
+if (!recipe) return Astro.redirect("/");
+
+const initial = {
+  title: recipe.title,
+  description: recipe.description ?? "",
+  servings: recipe.servings?.toString() ?? "",
+  prepTime: recipe.prepTime?.toString() ?? "",
+  cookTime: recipe.cookTime?.toString() ?? "",
+  difficulty: recipe.difficulty ?? "",
+  category: recipe.category?.name ?? "",
+  source: recipe.source ?? "",
+  isPublished: recipe.isPublished,
+  ingredients: recipe.recipeIngredients.map((ri) => ({
+    name: ri.ingredient.name,
+    amount: ri.amount?.toString() ?? "",
+    unit: ri.unit ?? "",
+    note: ri.note ?? "",
+    isOptional: ri.isOptional,
+    group: ri.group ?? "",
+  })),
+  steps: recipe.recipeSteps.map((s) => ({
+    title: s.title ?? "",
+    description: s.description,
+    duration: s.duration?.toString() ?? "",
+    tip: s.tip ?? "",
+  })),
+  tags: recipe.recipeTags.map((rt) => rt.tag.name).join(", "),
+};
+---
+
+<BaseLayout title={`Bearbeiten: ${recipe.title}`}>
+  <div class="max-w-2xl space-y-6">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold tracking-tight">Rezept bearbeiten</h1>
+      <a href={`/recipes/${slug}`} class="text-sm text-stone-500 hover:text-stone-900">
+        ← Ansicht
+      </a>
+    </div>
+
+    {recipe.imageUrl && (
+      <img
+        src={recipe.imageUrl}
+        alt={recipe.title}
+        class="h-48 w-full rounded-lg object-cover shadow"
+      />
+    )}
+
+    <RecipeEditForm slug={slug!} initial={initial} client:load />
+  </div>
+</BaseLayout>

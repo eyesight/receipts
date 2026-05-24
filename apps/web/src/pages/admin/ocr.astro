@@ -1,0 +1,108 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ImageUpload from "@/components/react/ImageUpload";
+import { getRecentOcrImports } from "@/lib/db/queries";
+
+const imports = await getRecentOcrImports(10);
+
+const statusLabel: Record<string, string> = {
+  pending: "Ausstehend",
+  processing: "Wird verarbeitet",
+  done: "Fertig",
+  error: "Fehler",
+};
+
+const statusClass: Record<string, string> = {
+  pending: "bg-stone-100 text-stone-600",
+  processing: "bg-blue-50 text-blue-700",
+  done: "bg-green-50 text-green-700",
+  error: "bg-red-50 text-red-700",
+};
+---
+
+<BaseLayout title="Rezept via Foto importieren">
+  <div class="space-y-12">
+    <div>
+      <h1 class="mb-2 text-2xl font-bold tracking-tight">Rezept importieren</h1>
+      <p class="text-sm text-stone-500">
+        Foto eines Rezepts hochladen — Claude erkennt Zutaten und Zubereitung automatisch.
+      </p>
+    </div>
+
+    <div class="max-w-xl">
+      <ImageUpload client:load />
+    </div>
+
+    <!-- Recent imports -->
+    <div>
+      <h2 class="mb-4 text-lg font-semibold">Letzte Importe</h2>
+
+      {
+        imports.length === 0 ? (
+          <p class="text-sm text-stone-400">Noch keine Importe vorhanden.</p>
+        ) : (
+          <div class="overflow-hidden rounded-lg border border-stone-200">
+            <table class="w-full text-sm">
+              <thead class="bg-stone-50 text-left text-xs font-medium uppercase tracking-wide text-stone-500">
+                <tr>
+                  <th class="px-4 py-3">Bild</th>
+                  <th class="px-4 py-3">Status</th>
+                  <th class="px-4 py-3">Rezept</th>
+                  <th class="px-4 py-3">Datum</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stone-100">
+                {imports.map((imp) => (
+                  <tr class="hover:bg-stone-50">
+                    <td class="px-4 py-3">
+                      <img
+                        src={imp.imageUrl}
+                        alt=""
+                        class="h-12 w-12 rounded object-cover"
+                        onerror="this.style.display='none'"
+                      />
+                    </td>
+                    <td class="px-4 py-3">
+                      <span
+                        class={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${statusClass[imp.status] ?? "bg-stone-100 text-stone-600"}`}
+                      >
+                        {statusLabel[imp.status] ?? imp.status}
+                      </span>
+                      {imp.errorMessage && (
+                        <p class="mt-1 text-xs text-red-600" title={imp.errorMessage}>
+                          {imp.errorMessage.slice(0, 60)}
+                          {imp.errorMessage.length > 60 ? "…" : ""}
+                        </p>
+                      )}
+                    </td>
+                    <td class="px-4 py-3">
+                      {imp.recipe ? (
+                        <a
+                          href={`/admin/recipes/${imp.recipe.slug}/edit`}
+                          class="font-medium hover:underline"
+                        >
+                          {imp.recipe.title}
+                        </a>
+                      ) : (
+                        <span class="text-stone-400">—</span>
+                      )}
+                    </td>
+                    <td class="px-4 py-3 text-stone-500">
+                      {imp.createdAt.toLocaleDateString("de-CH", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>

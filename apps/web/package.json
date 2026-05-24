@@ -1,0 +1,41 @@
+{
+  "name": "@recipes/web",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "tsc --noEmit",
+    "type-check": "astro check",
+    "clean": "rm -rf dist .astro",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx src/lib/db/seed.ts",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.98.0",
+    "@astrojs/react": "^3.6.0",
+    "@aws-sdk/client-s3": "^3.1053.0",
+    "@recipes/shared": "workspace:*",
+    "astro": "^4.8.0",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "postgres": "^3.4.9",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@astrojs/cloudflare": "^11.0.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/node": "^25.9.1",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "drizzle-kit": "^0.31.10",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.22.3",
+    "typescript": "^5.4.0"
+  }
+}

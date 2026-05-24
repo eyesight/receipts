@@ -1,0 +1,11 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import RecipeForm from "@/components/react/RecipeForm";
+---
+
+<BaseLayout title="Add recipe">
+  <div class="max-w-2xl">
+    <h1 class="mb-8 text-2xl font-bold tracking-tight">Add a recipe</h1>
+    <RecipeForm client:load />
+  </div>
+</BaseLayout>
