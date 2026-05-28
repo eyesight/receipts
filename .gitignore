@@ -34,5 +34,6 @@ pnpm-debug.log*
 .wrangler/
 
 # Import script data
-apps/web/src/scripts/import-samsung-food/data/
+# apps/web/src/scripts/import-samsung-food/data/
+apps/web/src/scripts/import-samsung-food/data/recipes-raw.json
 apps/web/public/images/recipes/
