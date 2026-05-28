@@ -142,6 +142,60 @@ receipts/
 
 ---
 
+## Samsung Food import
+
+One-time pipeline to import recipes from a Samsung Food profile into the local database with images served from `public/images/recipes/`.
+
+### Prerequisites
+
+Place `data/recipe-urls.json` inside `apps/web/src/scripts/import-samsung-food/data/` — a JSON array of Samsung Food recipe URLs:
+
+```json
+["https://app.samsungfood.com/recipes/<id>", ...]
+```
+
+Alternatively, run the crawl step first (see below).
+
+### Steps
+
+Run each command from the repo root:
+
+```bash
+# 1. (Optional) Crawl a Samsung Food profile page to collect recipe URLs
+pnpm --filter @recipes/web import:crawl
+
+# 2. Fetch full recipe data (schema.org JSON-LD) for every URL
+#    Saves to: apps/web/src/scripts/import-samsung-food/data/recipes-raw.json
+#    Resumes automatically if interrupted.
+pnpm --filter @recipes/web import:fetch
+
+# 3. Download images to apps/web/public/images/recipes/<id>.<ext>
+#    Updates recipes-raw.json and the DB imageUrl in one pass.
+#    Safe to re-run — skips already-downloaded files.
+pnpm --filter @recipes/web import:images
+
+# 4. Insert recipes into the database
+#    Skips any recipe whose slug already exists.
+pnpm --filter @recipes/web import:db
+```
+
+### Cleanup
+
+To remove all imported recipes from the database (cascade deletes ingredients and steps):
+
+```bash
+pnpm --filter @recipes/web import:cleanup
+```
+
+### Notes
+
+- All scripts read `DATABASE_URL` from `apps/web/.env`.
+- The `data/` folder is gitignored — keep recipe JSON files local.
+- Images in `public/images/recipes/` are served at `/images/recipes/<id>.<ext>` by Astro.
+- Recipes are imported with `isPublished = false`. Publish them manually via Drizzle Studio or the admin UI.
+
+---
+
 ## Roadmap
 
 | Phase | Feature |

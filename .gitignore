@@ -35,3 +35,4 @@ pnpm-debug.log*
 
 # Import script data
 apps/web/src/scripts/import-samsung-food/data/
+apps/web/public/images/recipes/

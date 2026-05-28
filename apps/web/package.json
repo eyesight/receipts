@@ -15,6 +15,7 @@
     "db:studio": "drizzle-kit studio",
     "import:crawl": "tsx src/scripts/import-samsung-food/crawl.ts",
     "import:fetch": "tsx src/scripts/import-samsung-food/fetch.ts",
+    "import:images": "tsx src/scripts/import-samsung-food/download-images.ts",
     "import:db": "tsx src/scripts/import-samsung-food/import.ts",
     "import:cleanup": "tsx src/scripts/import-samsung-food/cleanup.ts"
   },
