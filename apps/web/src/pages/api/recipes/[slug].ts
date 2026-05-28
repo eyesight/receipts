@@ -46,6 +46,7 @@ interface RecipeInput {
   category: string | null;
   source: string | null;
   isPublished: boolean;
+  imageUrl?: string | null;
   createdBy?: string | null;
   ingredients: IngredientInput[];
   steps: StepInput[];
@@ -109,6 +110,7 @@ export const PATCH: APIRoute = async ({ params, request }) => {
       source: body.source ?? undefined,
       createdBy: body.createdBy ?? undefined,
       isPublished: body.isPublished,
+      imageUrl: body.imageUrl ?? undefined,
       updatedAt: new Date(),
     })
     .where(eq(recipes.id, recipeId));

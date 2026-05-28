@@ -18,6 +18,7 @@ const initial = {
   category: recipe.category?.name ?? "",
   source: recipe.source ?? "",
   isPublished: recipe.isPublished,
+  imageUrl: recipe.imageUrl ?? "",
   ingredients: recipe.recipeIngredients.map((ri) => ({
     name: ri.ingredient.name,
     amount: ri.amount?.toString() ?? "",
@@ -44,14 +45,6 @@ const initial = {
         ← Ansicht
       </a>
     </div>
-
-    {recipe.imageUrl && (
-      <img
-        src={recipe.imageUrl}
-        alt={recipe.title}
-        class="h-48 w-full rounded-lg object-cover shadow"
-      />
-    )}
 
     <RecipeEditForm slug={slug!} initial={initial} client:load />
   </div>

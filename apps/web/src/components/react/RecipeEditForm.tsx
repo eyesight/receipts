@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ImageUploadField from './ImageUploadField';
 
 interface Ingredient {
   name: string;
@@ -26,6 +27,7 @@ interface RecipeData {
   category: string;
   source: string;
   isPublished: boolean;
+  imageUrl: string;
   ingredients: Ingredient[];
   steps: Step[];
   tags: string;
@@ -117,6 +119,7 @@ export default function RecipeEditForm({ slug, initial }: Props) {
         category: form.category || null,
         source: form.source || null,
         isPublished: form.isPublished,
+        imageUrl: form.imageUrl || null,
         ingredients: form.ingredients
           .filter((ing) => ing.name.trim())
           .map((ing) => ({
@@ -177,6 +180,15 @@ export default function RecipeEditForm({ slug, initial }: Props) {
 
       {/* Basic info */}
       <div className="space-y-4">
+        {/* Image */}
+        <div>
+          <label className={labelClass}>Bild</label>
+          <ImageUploadField
+            value={form.imageUrl}
+            onChange={(url) => setField('imageUrl', url)}
+          />
+        </div>
+
         <div>
           <label className={labelClass}>Titel *</label>
           <input

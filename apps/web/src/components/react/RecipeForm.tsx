@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface Ingredient {
   name: string;
@@ -14,6 +14,7 @@ interface FormState {
   cookTimeMinutes: string;
   ingredients: Ingredient[];
   instructions: string;
+  imageUrl: string;
 }
 
 const emptyIngredient = (): Ingredient => ({ name: "", amount: "", unit: "" });
@@ -27,9 +28,13 @@ export default function RecipeForm() {
     cookTimeMinutes: "",
     ingredients: [emptyIngredient()],
     instructions: "",
+    imageUrl: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [imageError, setImageError] = useState<string | null>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -55,6 +60,26 @@ export default function RecipeForm() {
     }));
   }
 
+  async function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingImage(true);
+    setImageError(null);
+    try {
+      const fd = new FormData();
+      fd.append("image", file);
+      const res = await fetch("/api/images", { method: "POST", body: fd });
+      const data = await res.json() as { url?: string; error?: string };
+      if (!res.ok || !data.url) throw new Error(data.error ?? "Upload failed");
+      updateField("imageUrl", data.url);
+    } catch (err) {
+      setImageError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setUploadingImage(false);
+      if (imageInputRef.current) imageInputRef.current.value = "";
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -69,10 +94,12 @@ export default function RecipeForm() {
           prepTimeMinutes: form.prepTimeMinutes ? Number(form.prepTimeMinutes) : undefined,
           cookTimeMinutes: form.cookTimeMinutes ? Number(form.cookTimeMinutes) : undefined,
           ingredients: form.ingredients.filter((ing) => ing.name.trim()),
+          imageUrl: form.imageUrl || undefined,
         }),
       });
       if (!res.ok) throw new Error(await res.text());
-      window.location.href = "/";
+      const data = await res.json() as { slug: string };
+      window.location.href = `/admin/recipes/${data.slug}/edit`;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -85,6 +112,43 @@ export default function RecipeForm() {
       {error && (
         <p className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
       )}
+
+      {/* Image */}
+      <div className="space-y-1">
+        <label className="block text-sm font-medium">Image</label>
+        <div className="space-y-2">
+          {form.imageUrl && (
+            <img
+              src={form.imageUrl}
+              alt="Preview"
+              className="h-40 w-full rounded-lg object-cover shadow"
+            />
+          )}
+          <div className="flex items-center gap-3">
+            <label className={`cursor-pointer rounded-md border border-stone-300 px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-50 ${uploadingImage ? "pointer-events-none opacity-50" : ""}`}>
+              {uploadingImage ? "Uploading…" : form.imageUrl ? "Change image" : "Upload image"}
+              <input
+                ref={imageInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/heic"
+                className="sr-only"
+                onChange={handleImageChange}
+                disabled={uploadingImage}
+              />
+            </label>
+            {form.imageUrl && !uploadingImage && (
+              <button
+                type="button"
+                onClick={() => updateField("imageUrl", "")}
+                className="text-sm text-stone-400 hover:text-red-600"
+              >
+                Remove
+              </button>
+            )}
+          </div>
+          {imageError && <p className="text-sm text-red-600">{imageError}</p>}
+        </div>
+      </div>
 
       {/* Title */}
       <div className="space-y-1">
