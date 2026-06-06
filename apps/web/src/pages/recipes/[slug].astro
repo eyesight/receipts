@@ -1,11 +1,22 @@
 ---
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getRecipeBySlug } from "@/lib/db/queries";
 
-const { slug } = Astro.params;
-const recipe = await getRecipeBySlug(slug!);
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return recipes.map((entry: CollectionEntry<"recipes">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
 
-if (!recipe) return Astro.redirect("/");
+interface Props {
+  entry: CollectionEntry<"recipes">;
+}
+
+const { entry } = Astro.props;
+const { data: recipe } = entry;
+const { Content } = await entry.render();
 
 const totalTime = (recipe.prepTime ?? 0) + (recipe.cookTime ?? 0);
 
@@ -23,7 +34,7 @@ const difficultyLabel: Record<string, string> = {
     <div class="space-y-3">
       {recipe.category && (
         <p class="text-sm font-medium uppercase tracking-wide text-stone-400">
-          {recipe.category.name}
+          {recipe.category}
         </p>
       )}
       <h1 class="text-3xl font-bold tracking-tight">{recipe.title}</h1>
@@ -66,11 +77,11 @@ const difficultyLabel: Record<string, string> = {
       </dl>
 
       <!-- Tags -->
-      {recipe.recipeTags.length > 0 && (
+      {recipe.tags.length > 0 && (
         <div class="flex flex-wrap gap-2 pt-1">
-          {recipe.recipeTags.map(({ tag }) => (
+          {recipe.tags.map((tag) => (
             <span class="rounded-full bg-stone-100 px-3 py-0.5 text-xs text-stone-600">
-              {tag.name}
+              {tag}
             </span>
           ))}
         </div>
@@ -78,9 +89,9 @@ const difficultyLabel: Record<string, string> = {
     </div>
 
     <!-- Image -->
-    {recipe.imageUrl && (
+    {recipe.image && (
       <img
-        src={recipe.imageUrl}
+        src={recipe.image}
         alt={recipe.title}
         class="w-full rounded-lg object-cover shadow"
         style="max-height: 400px"
@@ -88,21 +99,17 @@ const difficultyLabel: Record<string, string> = {
     )}
 
     <!-- Ingredients -->
-    {recipe.recipeIngredients.length > 0 && (
+    {recipe.ingredients.length > 0 && (
       <section>
         <h2 class="mb-4 text-lg font-semibold">Zutaten</h2>
         <ul class="space-y-2">
-          {recipe.recipeIngredients.map(({ ingredient, amount, unit, note, isOptional }) => (
+          {recipe.ingredients.map(({ name, amount, unit }) => (
             <li class="flex gap-3 text-sm">
               <span class="w-20 shrink-0 text-right text-stone-500">
-                {amount ? Number(amount) % 1 === 0 ? Number(amount) : amount : ""}
-                {unit && ` ${unit}`}
+                {amount ?? ""}
+                {unit ? ` ${unit}` : ""}
               </span>
-              <span class={isOptional ? "text-stone-400" : ""}>
-                {ingredient.name}
-                {note && <span class="text-stone-400"> ({note})</span>}
-                {isOptional && <span class="text-stone-400"> (optional)</span>}
-              </span>
+              <span>{name}</span>
             </li>
           ))}
         </ul>
@@ -110,26 +117,17 @@ const difficultyLabel: Record<string, string> = {
     )}
 
     <!-- Steps -->
-    {recipe.recipeSteps.length > 0 && (
+    {recipe.steps.length > 0 && (
       <section>
         <h2 class="mb-4 text-lg font-semibold">Zubereitung</h2>
         <ol class="space-y-6">
-          {recipe.recipeSteps.map((step) => (
+          {recipe.steps.map((step) => (
             <li class="flex gap-4">
               <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-900 text-xs font-bold text-white">
                 {step.order}
               </span>
               <div class="space-y-1 pt-0.5">
-                {step.title && <p class="font-medium">{step.title}</p>}
-                <p class="text-stone-700">{step.description}</p>
-                {step.tip && (
-                  <p class="rounded bg-amber-50 px-3 py-2 text-sm text-amber-800">
-                    💡 {step.tip}
-                  </p>
-                )}
-                {step.duration && (
-                  <p class="text-xs text-stone-400">{step.duration} Min.</p>
-                )}
+                <p class="text-stone-700">{step.text}</p>
               </div>
             </li>
           ))}
@@ -137,17 +135,10 @@ const difficultyLabel: Record<string, string> = {
       </section>
     )}
 
-    <!-- Source -->
-    {recipe.source && (
-      <p class="text-xs text-stone-400">Quelle: {recipe.source}</p>
-    )}
-
-    <a
-      href={`/admin/recipes/${recipe.slug}/edit`}
-      class="inline-block text-sm text-stone-400 underline hover:text-stone-700"
-    >
-      Rezept bearbeiten
-    </a>
+    <!-- Markdown body -->
+    <div class="prose prose-stone max-w-none text-sm text-stone-500">
+      <Content />
+    </div>
 
   </article>
 </BaseLayout>

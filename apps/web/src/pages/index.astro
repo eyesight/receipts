@@ -1,13 +1,23 @@
 ---
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getRecipes } from "@/lib/db/queries";
 
-const recipes = await getRecipes({ isPublished: false, limit: 1000 });
+const allRecipes = await getCollection("recipes");
+const recipes = allRecipes
+  .sort((a: CollectionEntry<"recipes">, b: CollectionEntry<"recipes">) =>
+    b.data.createdAt.getTime() - a.data.createdAt.getTime()
+  )
+  .slice(0, 6);
 ---
 
 <BaseLayout title="Rezepte">
   <div class="space-y-8">
-    <h1 class="text-2xl font-bold tracking-tight">Alle Rezepte</h1>
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold tracking-tight">Neueste Rezepte</h1>
+      <a href="/recipes/" class="text-sm text-stone-500 underline hover:no-underline">
+        Alle Rezepte →
+      </a>
+    </div>
 
     {
       recipes.length === 0 ? (
@@ -25,30 +35,29 @@ const recipes = await getRecipes({ isPublished: false, limit: 1000 });
                 href={`/recipes/${r.slug}`}
                 class="group flex h-full flex-col rounded-lg border border-stone-200 bg-white p-5 shadow-sm transition hover:border-stone-400 hover:shadow"
               >
-                {r.imageUrl && (
+                {r.data.image && (
                   <img
-                    src={r.imageUrl}
-                    alt={r.title}
+                    src={r.data.image}
+                    alt={r.data.title}
                     class="mb-4 h-40 w-full rounded object-cover"
                   />
                 )}
-                <h2 class="font-semibold group-hover:underline">{r.title}</h2>
-                {r.description && (
+                <h2 class="font-semibold group-hover:underline">{r.data.title}</h2>
+                {r.data.description && (
                   <p class="mt-1 line-clamp-2 text-sm text-stone-500">
-                    {r.description}
+                    {r.data.description}
                   </p>
                 )}
                 <div class="mt-auto flex flex-wrap gap-2 pt-3">
-                  {r.category && (
+                  {r.data.category && (
                     <span class="rounded-full bg-stone-100 px-2 py-0.5 text-xs text-stone-600">
-                      {r.category.name}
+                      {r.data.category}
                     </span>
                   )}
-                  {r.prepTime && (
-                    <span class="text-xs text-stone-400">{r.prepTime + (r.cookTime ?? 0)} Min.</span>
-                  )}
-                  {r.difficulty && (
-                    <span class="text-xs text-stone-400 capitalize">{r.difficulty}</span>
+                  {r.data.prepTime && (
+                    <span class="text-xs text-stone-400">
+                      {r.data.prepTime + (r.data.cookTime ?? 0)} Min.
+                    </span>
                   )}
                 </div>
               </a>

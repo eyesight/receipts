@@ -17,7 +17,9 @@
     "import:fetch": "tsx src/scripts/import-samsung-food/fetch.ts",
     "import:images": "tsx src/scripts/import-samsung-food/download-images.ts",
     "import:db": "tsx src/scripts/import-samsung-food/import.ts",
-    "import:cleanup": "tsx src/scripts/import-samsung-food/cleanup.ts"
+    "import:cleanup": "tsx src/scripts/import-samsung-food/cleanup.ts",
+    "admin:new": "tsx src/scripts/admin/new-recipe.ts",
+    "admin:export": "tsx src/scripts/admin/export-db-recipes.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",
@@ -32,6 +34,7 @@
     "react-dom": "^18.3.0"
   },
   "devDependencies": {
+    "@inquirer/prompts": "^7.0.0",
     "@astrojs/check": "^0.9.0",
     "@astrojs/cloudflare": "^11.0.0",
     "@astrojs/tailwind": "^5.1.0",

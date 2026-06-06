@@ -1,4 +1,9 @@
 ---
+// Only available in local dev with a database connection
+export function getStaticPaths() {
+  return [];
+}
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import RecipeEditForm from "@/components/react/RecipeEditForm";
 import { getRecipeBySlug } from "@/lib/db/queries";

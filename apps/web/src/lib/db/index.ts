@@ -2,14 +2,12 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 
-// For Cloudflare Workers deploy, swap to drizzle-orm/neon-serverless + @neondatabase/serverless
 const connectionString = import.meta.env.DATABASE_URL as string | undefined;
 
 if (!connectionString) {
-  throw new Error('DATABASE_URL environment variable is not set');
+  console.warn('[db] DATABASE_URL not set — database disabled for static build');
 }
 
-const client = postgres(connectionString, { prepare: false });
-
-export const db = drizzle(client, { schema });
+const client = connectionString ? postgres(connectionString, { prepare: false }) : null;
+export const db = (client ? drizzle(client, { schema }) : null) as ReturnType<typeof drizzle<typeof schema>>;
 export type Database = typeof db;

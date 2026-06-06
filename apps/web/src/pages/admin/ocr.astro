@@ -1,7 +1,12 @@
 ---
+// Only available in local dev
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ImageUpload from "@/components/react/ImageUpload";
 import { getRecentOcrImports } from "@/lib/db/queries";
+
+if (!import.meta.env.DEV) {
+  return Astro.redirect("/");
+}
 
 const imports = await getRecentOcrImports(10);
 

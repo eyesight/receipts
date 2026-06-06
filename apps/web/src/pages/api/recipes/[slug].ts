@@ -1,3 +1,5 @@
+export function getStaticPaths() { return []; }
+
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';

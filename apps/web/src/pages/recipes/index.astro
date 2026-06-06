@@ -1,0 +1,116 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const allRecipes = await getCollection("recipes");
+const recipes = allRecipes.sort(
+  (a: CollectionEntry<"recipes">, b: CollectionEntry<"recipes">) =>
+    b.data.createdAt.getTime() - a.data.createdAt.getTime()
+);
+
+const categories = [...new Set(allRecipes.map((r) => r.data.category).filter(Boolean))] as string[];
+---
+
+<BaseLayout title="Alle Rezepte">
+  <div class="space-y-8">
+    <h1 class="text-2xl font-bold tracking-tight">Alle Rezepte</h1>
+
+    {categories.length > 0 && (
+      <div class="flex flex-wrap gap-2" id="category-filter">
+        <button
+          data-filter="all"
+          class="rounded-full border border-stone-900 bg-stone-900 px-3 py-1 text-sm text-white"
+        >
+          Alle
+        </button>
+        {categories.map((cat) => (
+          <button
+            data-filter={cat}
+            class="rounded-full border border-stone-300 px-3 py-1 text-sm hover:bg-stone-100"
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {
+      recipes.length === 0 ? (
+        <p class="text-stone-500">Noch keine Rezepte vorhanden.</p>
+      ) : (
+        <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="recipe-grid">
+          {recipes.map((r) => (
+            <li data-category={r.data.category ?? ""}>
+              <a
+                href={`/recipes/${r.slug}`}
+                class="group flex h-full flex-col rounded-lg border border-stone-200 bg-white p-5 shadow-sm transition hover:border-stone-400 hover:shadow"
+              >
+                {r.data.image && (
+                  <img
+                    src={r.data.image}
+                    alt={r.data.title}
+                    class="mb-4 h-40 w-full rounded object-cover"
+                  />
+                )}
+                <h2 class="font-semibold group-hover:underline">{r.data.title}</h2>
+                {r.data.description && (
+                  <p class="mt-1 line-clamp-2 text-sm text-stone-500">
+                    {r.data.description}
+                  </p>
+                )}
+                <div class="mt-auto flex flex-wrap gap-2 pt-3">
+                  {r.data.category && (
+                    <span class="rounded-full bg-stone-100 px-2 py-0.5 text-xs text-stone-600">
+                      {r.data.category}
+                    </span>
+                  )}
+                  {r.data.prepTime && (
+                    <span class="text-xs text-stone-400">
+                      {r.data.prepTime} Min. Vorbereitung
+                    </span>
+                  )}
+                  {r.data.servings && (
+                    <span class="text-xs text-stone-400">{r.data.servings} Portionen</span>
+                  )}
+                </div>
+                {r.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1 pt-2">
+                    {r.data.tags.slice(0, 3).map((tag) => (
+                      <span class="rounded bg-stone-50 px-1.5 py-0.5 text-xs text-stone-500">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<script>
+  const filter = document.getElementById("category-filter");
+  const grid = document.getElementById("recipe-grid");
+
+  filter?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest("[data-filter]") as HTMLButtonElement | null;
+    if (!btn) return;
+
+    const selected = btn.dataset.filter ?? "all";
+
+    filter.querySelectorAll("[data-filter]").forEach((b) => {
+      b.classList.remove("bg-stone-900", "text-white", "border-stone-900");
+      b.classList.add("border-stone-300");
+    });
+    btn.classList.add("bg-stone-900", "text-white", "border-stone-900");
+    btn.classList.remove("border-stone-300");
+
+    grid?.querySelectorAll<HTMLLIElement>("li[data-category]").forEach((li) => {
+      li.style.display =
+        selected === "all" || li.dataset.category === selected ? "" : "none";
+    });
+  });
+</script>
