@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 
 type Status = 'idle' | 'uploading' | 'done' | 'error';
 
+
 const ACCEPTED = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
 const MAX_SIZE = 10 * 1024 * 1024;
 
@@ -71,10 +72,7 @@ export default function ImageUpload() {
     }, 12_000);
 
     try {
-      const form = new FormData();
-      form.append('image', file);
-
-      const res = await fetch('/api/ocr', { method: 'POST', body: form });
+      const res = await fetch('/api/ocr', { method: 'POST', body: file });
       const data = await res.json() as { success?: boolean; recipe?: { slug: string; title: string }; error?: string };
 
       if (!res.ok || !data.success) {
@@ -154,12 +152,14 @@ export default function ImageUpload() {
         <div className="rounded-md bg-green-50 px-4 py-4 text-sm text-green-800">
           <p className="font-medium">Rezept gespeichert!</p>
           <p className="mt-1">{result.title}</p>
-          <a
-            href="/admin/ocr"
-            className="mt-2 inline-block underline hover:no-underline"
-          >
-            Weitere importieren →
-          </a>
+          <div className="mt-2 flex gap-4">
+            <a href={`/recipes/${result.slug}`} className="underline hover:no-underline">
+              Rezept ansehen →
+            </a>
+            <a href="/admin/ocr" className="text-green-700 underline hover:no-underline">
+              Weiteres importieren
+            </a>
+          </div>
         </div>
       )}
 

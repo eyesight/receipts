@@ -66,9 +66,7 @@ export default function RecipeForm() {
     setUploadingImage(true);
     setImageError(null);
     try {
-      const fd = new FormData();
-      fd.append("image", file);
-      const res = await fetch("/api/images", { method: "POST", body: fd });
+      const res = await fetch("/api/images", { method: "POST", body: file });
       const data = await res.json() as { url?: string; error?: string };
       if (!res.ok || !data.url) throw new Error(data.error ?? "Upload failed");
       updateField("imageUrl", data.url);
@@ -99,7 +97,7 @@ export default function RecipeForm() {
       });
       if (!res.ok) throw new Error(await res.text());
       const data = await res.json() as { slug: string };
-      window.location.href = `/admin/recipes/${data.slug}/edit`;
+      window.location.href = `/recipes/${data.slug}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {

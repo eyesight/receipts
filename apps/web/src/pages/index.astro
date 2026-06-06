@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
@@ -29,7 +30,7 @@ const recipes = allRecipes
         </p>
       ) : (
         <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {recipes.map((r) => (
+          {recipes.map((r: CollectionEntry<"recipes">) => (
             <li>
               <a
                 href={`/recipes/${r.slug}`}
