@@ -61,7 +61,7 @@ console.log(`Found ${allRecipes.length} recipe(s) in database.\n`);
 
 // ─── Output directory ─────────────────────────────────────────────────────────
 
-const contentDir = resolve(fileURLToPath(import.meta.url), "../../../../content/recipes");
+const contentDir = resolve(fileURLToPath(import.meta.url), "../../../content/recipes");
 mkdirSync(contentDir, { recursive: true });
 
 // ─── Export ───────────────────────────────────────────────────────────────────
@@ -84,15 +84,22 @@ for (const recipe of allRecipes) {
   const ingredientsYaml = recipe.recipeIngredients.length
     ? recipe.recipeIngredients
         .map((ri) => {
-          const lines = [
-            `  - amount: ${ri.amount ? num(ri.amount) : "~"}`,
-            `    unit: ${ri.unit ? q(ri.unit) : "~"}`,
-            `    name: ${q(ri.ingredient.name)}`,
-          ];
-          if (ri.note) lines.push(`    note: ${q(ri.note)}`);
-          if (ri.isOptional) lines.push(`    isOptional: true`);
-          if (ri.group) lines.push(`    group: ${q(ri.group)}`);
-          return lines.join("\n");
+          const amtRaw = ri.amount != null
+            ? (Number(ri.amount) % 1 === 0 ? String(parseInt(ri.amount)) : ri.amount)
+            : null;
+          const lines = [`  - name: ${q(ri.ingredient.name)}`];
+          if (amtRaw != null) lines.splice(0, 0, `  - amount: ${q(amtRaw)}`);
+          else lines[0] = `  - name: ${q(ri.ingredient.name)}`;
+          // rebuild: amount first, then unit, then name
+          const parts: string[] = [];
+          if (amtRaw != null) parts.push(`  - amount: ${q(amtRaw)}`);
+          else parts.push(`  -`);
+          if (ri.unit) parts.push(`    unit: ${q(ri.unit)}`);
+          parts.push(`    name: ${q(ri.ingredient.name)}`);
+          if (ri.note) parts.push(`    note: ${q(ri.note)}`);
+          if (ri.isOptional) parts.push(`    isOptional: true`);
+          if (ri.group) parts.push(`    group: ${q(ri.group)}`);
+          return parts.join("\n");
         })
         .join("\n")
     : "  []";
@@ -133,10 +140,10 @@ for (const recipe of allRecipes) {
     `category: ${recipe.category ? q(recipe.category.name) : "~"}`,
     `tags:`,
     tagsYaml,
-    `servings: ${recipe.servings ?? "~"}`,
-    `prepTime: ${recipe.prepTime ?? "~"}`,
-    `cookTime: ${recipe.cookTime ?? "~"}`,
-    `difficulty: ${recipe.difficulty ?? "~"}`,
+    ...(recipe.servings != null ? [`servings: ${recipe.servings}`] : []),
+    ...(recipe.prepTime != null ? [`prepTime: ${recipe.prepTime}`] : []),
+    ...(recipe.cookTime != null ? [`cookTime: ${recipe.cookTime}`] : []),
+    ...(recipe.difficulty != null ? [`difficulty: ${recipe.difficulty}`] : []),
     `image: ${imageValue}`,
     `ingredients:`,
     ingredientsYaml,

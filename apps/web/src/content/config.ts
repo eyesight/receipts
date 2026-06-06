@@ -1,31 +1,50 @@
 import { defineCollection, z } from "astro:content";
-import { ingredientSchema, recipeStepSchema, recipeImageSchema } from "@recipes/shared";
+import { recipeImageSchema } from "@recipes/shared";
 
-// Extended locally to capture all DB fields in the markdown template.
-const contentIngredientSchema = ingredientSchema.extend({
-  note: z.string().optional(),
+// Coerce YAML null → undefined and numbers → string for amount fields.
+const str = z
+  .union([z.string(), z.number()])
+  .nullish()
+  .transform((v) => (v != null ? String(v) : undefined));
+
+const num = z
+  .number()
+  .nullish()
+  .transform((v) => v ?? undefined);
+
+const contentIngredientSchema = z.object({
+  name: z.string().min(1),
+  amount: str,
+  unit: str,
+  note: str,
   isOptional: z.boolean().default(false),
-  group: z.string().optional(),
+  group: str,
 });
 
-const contentStepSchema = recipeStepSchema.extend({
-  title: z.string().optional(),
-  tip: z.string().optional(),
-  duration: z.number().int().nonnegative().optional(),
+const contentStepSchema = z.object({
+  order: z.number().int().positive(),
+  text: z.string().min(1),
+  imageUrl: str,
+  title: str,
+  tip: str,
+  duration: num,
 });
 
 const recipes = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string().min(1).max(255),
-    description: z.string().optional(),
-    category: z.string().max(100).optional(),
+    description: str,
+    category: str,
     tags: z.array(z.string()).default([]),
-    servings: z.number().int().positive().optional(),
-    prepTime: z.number().int().nonnegative().optional(),
-    cookTime: z.number().int().nonnegative().optional(),
-    difficulty: z.enum(['easy', 'medium', 'hard']).optional(),
-    image: z.string().optional(),
+    servings: num,
+    prepTime: num,
+    cookTime: num,
+    difficulty: z
+      .enum(["easy", "medium", "hard"])
+      .nullish()
+      .transform((v) => v ?? undefined),
+    image: str,
     ingredients: z.array(contentIngredientSchema),
     steps: z.array(contentStepSchema),
     images: z.array(recipeImageSchema).default([]),
