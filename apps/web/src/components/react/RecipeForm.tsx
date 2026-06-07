@@ -6,6 +6,30 @@ interface Ingredient {
   unit: string;
 }
 
+function parseIngredientLine(raw: string): Ingredient {
+  const s = raw.trim();
+  if (!s) return { name: "", amount: "", unit: "" };
+  // Pattern A: number with letters attached (e.g. "10g Salz", "200ml Milch")
+  const patA = s.match(/^(\d+[.,]?\d*)([a-zA-ZäöüÄÖÜéèàùâêîôûçß]+)\s+(.+)$/);
+  if (patA) return { amount: patA[1], unit: patA[2], name: patA[3].trim() };
+  // Pattern B: number space rest (e.g. "1 Esslöffel Öl", "2 Eier")
+  const patB = s.match(/^(\d+[.,]?\d*)\s+(.+)$/);
+  if (patB) {
+    const spaceIdx = patB[2].indexOf(" ");
+    if (spaceIdx !== -1)
+      return { amount: patB[1], unit: patB[2].slice(0, spaceIdx), name: patB[2].slice(spaceIdx + 1).trim() };
+    return { amount: patB[1], unit: "", name: patB[2].trim() };
+  }
+  // Pattern C: name first, then number + optional unit (e.g. "Pelati 2 Büchsen")
+  const patC = s.match(/^(.+?)\s+(\d+[.,]?\d*)\s*([a-zA-ZäöüÄÖÜéèàùâêîôûçß]*)\s*$/);
+  if (patC) return { amount: patC[2], unit: patC[3] || "", name: patC[1].trim() };
+  return { amount: "", unit: "", name: s };
+}
+
+function parseIngredientText(text: string): Ingredient[] {
+  return text.split(/[\n,]+/).map((l) => l.trim()).filter(Boolean).map(parseIngredientLine);
+}
+
 interface FormState {
   title: string;
   description: string;
@@ -30,6 +54,7 @@ export default function RecipeForm() {
     instructions: "",
     imageUrl: "",
   });
+  const [bulkText, setBulkText] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -51,6 +76,16 @@ export default function RecipeForm() {
 
   function addIngredient() {
     setForm((prev) => ({ ...prev, ingredients: [...prev.ingredients, emptyIngredient()] }));
+  }
+
+  function addBulkIngredients() {
+    const parsed = parseIngredientText(bulkText);
+    if (!parsed.length) return;
+    setForm((prev) => ({
+      ...prev,
+      ingredients: [...prev.ingredients.filter((i) => i.name.trim()), ...parsed],
+    }));
+    setBulkText("");
   }
 
   function removeIngredient(index: number) {
@@ -207,6 +242,33 @@ export default function RecipeForm() {
       {/* Ingredients */}
       <fieldset className="space-y-3">
         <legend className="text-sm font-medium">Ingredients</legend>
+
+        {/* Bulk entry */}
+        <div className="space-y-1.5">
+          <textarea
+            value={bulkText}
+            onChange={(e) => setBulkText(e.target.value)}
+            onKeyDown={(e) => {
+              if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                e.preventDefault();
+                addBulkIngredients();
+              }
+            }}
+            rows={3}
+            placeholder={"10g Salz, 1 Esslöffel Öl\nPelati 2 Büchsen"}
+            className="w-full rounded-md border border-stone-300 px-3 py-2 text-sm shadow-sm focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <button
+            type="button"
+            onClick={addBulkIngredients}
+            disabled={!bulkText.trim()}
+            className="text-sm text-stone-600 hover:text-stone-900 underline disabled:pointer-events-none disabled:opacity-40"
+          >
+            Zutaten einfügen
+          </button>
+          <p className="text-xs text-stone-400">Eine Zeile oder kommagetrennt — z.B. «10g Salz» oder «Pelati 2 Büchsen»</p>
+        </div>
+
         {form.ingredients.map((ing, i) => (
           <div key={i} className="flex gap-2">
             <input

@@ -1,6 +1,30 @@
 import { useState } from 'react';
 import ImageUploadField from './ImageUploadField';
 
+function parseIngredientLine(raw: string): { name: string; amount: string; unit: string } {
+  const s = raw.trim();
+  if (!s) return { name: '', amount: '', unit: '' };
+  // Pattern A: number with letters attached (e.g. "10g Salz", "200ml Milch")
+  const patA = s.match(/^(\d+[.,]?\d*)([a-zA-ZäöüÄÖÜéèàùâêîôûçß]+)\s+(.+)$/);
+  if (patA) return { amount: patA[1], unit: patA[2], name: patA[3].trim() };
+  // Pattern B: number space rest (e.g. "1 Esslöffel Öl", "2 Eier")
+  const patB = s.match(/^(\d+[.,]?\d*)\s+(.+)$/);
+  if (patB) {
+    const spaceIdx = patB[2].indexOf(' ');
+    if (spaceIdx !== -1)
+      return { amount: patB[1], unit: patB[2].slice(0, spaceIdx), name: patB[2].slice(spaceIdx + 1).trim() };
+    return { amount: patB[1], unit: '', name: patB[2].trim() };
+  }
+  // Pattern C: name first, then number + optional unit (e.g. "Pelati 2 Büchsen")
+  const patC = s.match(/^(.+?)\s+(\d+[.,]?\d*)\s*([a-zA-ZäöüÄÖÜéèàùâêîôûçß]*)\s*$/);
+  if (patC) return { amount: patC[2], unit: patC[3] || '', name: patC[1].trim() };
+  return { amount: '', unit: '', name: s };
+}
+
+function parseIngredientText(text: string): { name: string; amount: string; unit: string }[] {
+  return text.split(/[\n,]+/).map((l) => l.trim()).filter(Boolean).map(parseIngredientLine);
+}
+
 interface Ingredient {
   name: string;
   amount: string;
@@ -44,6 +68,7 @@ const labelClass = 'block text-sm font-medium mb-1';
 
 export default function RecipeEditForm({ slug, initial }: Props) {
   const [form, setForm] = useState<RecipeData>(initial);
+  const [bulkText, setBulkText] = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
@@ -62,6 +87,20 @@ export default function RecipeEditForm({ slug, initial }: Props) {
       );
       return { ...f, ingredients };
     });
+    setSaved(false);
+  }
+
+  function addBulkIngredients() {
+    const parsed = parseIngredientText(bulkText);
+    if (!parsed.length) return;
+    setForm((f) => ({
+      ...f,
+      ingredients: [
+        ...f.ingredients.filter((i) => i.name.trim()),
+        ...parsed.map((p) => ({ ...p, note: '', isOptional: false, group: '' })),
+      ],
+    }));
+    setBulkText('');
     setSaved(false);
   }
 
@@ -293,6 +332,33 @@ export default function RecipeEditForm({ slug, initial }: Props) {
       {/* Ingredients */}
       <fieldset className="space-y-3">
         <legend className="text-base font-semibold">Zutaten</legend>
+
+        {/* Bulk entry */}
+        <div className="space-y-1.5">
+          <textarea
+            value={bulkText}
+            onChange={(e) => setBulkText(e.target.value)}
+            onKeyDown={(e) => {
+              if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                addBulkIngredients();
+              }
+            }}
+            rows={3}
+            placeholder={'10g Salz, 1 Esslöffel Öl\nPelati 2 Büchsen'}
+            className={inputClass}
+          />
+          <button
+            type="button"
+            onClick={addBulkIngredients}
+            disabled={!bulkText.trim()}
+            className="text-sm text-stone-600 underline hover:text-stone-900 disabled:pointer-events-none disabled:opacity-40"
+          >
+            Zutaten einfügen
+          </button>
+          <p className="text-xs text-stone-400">Eine Zeile oder kommagetrennt — z.B. «10g Salz» oder «Pelati 2 Büchsen»</p>
+        </div>
+
         {form.ingredients.map((ing, i) => (
           <div key={i} className="flex flex-wrap gap-2">
             <input
