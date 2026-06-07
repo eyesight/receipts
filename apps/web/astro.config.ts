@@ -43,7 +43,7 @@ function devApiPlugin(): Plugin {
     apply: "serve",
     configureServer(server) {
       server.middlewares.use(async (req: IncomingMessage, res: ServerResponse, next) => {
-        if (req.method !== "POST") return next();
+        if (req.method !== "POST" && req.method !== "PATCH") return next();
 
         // ── OCR ──────────────────────────────────────────────────────────────
         if (req.url === "/api/ocr") {

@@ -157,6 +157,7 @@ export default function RecipeEditForm({ slug, initial }: Props) {
       }
 
       setSaved(true);
+      window.location.href = `/recipes/${slug}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unbekannter Fehler');
     } finally {

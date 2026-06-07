@@ -126,9 +126,7 @@ for (const recipe of allRecipes) {
     : "  []";
 
   // Cover image: use DB imageUrl if present, else leave local path placeholder
-  const imageValue = recipe.imageUrl
-    ? q(recipe.imageUrl)
-    : `"/images/recipes/${recipe.slug}/cover.jpg"`;
+  const imageValue = recipe.imageUrl ? q(recipe.imageUrl) : null;
 
   const createdAt = recipe.createdAt.toISOString().split("T")[0];
   const updatedAt = recipe.updatedAt.toISOString().split("T")[0];
@@ -144,7 +142,7 @@ for (const recipe of allRecipes) {
     ...(recipe.prepTime != null ? [`prepTime: ${recipe.prepTime}`] : []),
     ...(recipe.cookTime != null ? [`cookTime: ${recipe.cookTime}`] : []),
     ...(recipe.difficulty != null ? [`difficulty: ${recipe.difficulty}`] : []),
-    `image: ${imageValue}`,
+    ...(imageValue ? [`image: ${imageValue}`] : []),
     `ingredients:`,
     ingredientsYaml,
     `steps:`,

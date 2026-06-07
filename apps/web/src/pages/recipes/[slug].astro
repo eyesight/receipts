@@ -128,7 +128,16 @@ const difficultyLabel: Record<string, string> = {
                 {step.order}
               </span>
               <div class="space-y-1 pt-0.5">
+                {step.title && <p class="font-medium">{step.title}</p>}
                 <p class="text-stone-700">{step.text}</p>
+                {step.tip && (
+                  <p class="rounded bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                    💡 {step.tip}
+                  </p>
+                )}
+                {step.duration && (
+                  <p class="text-xs text-stone-400">{step.duration} Min.</p>
+                )}
               </div>
             </li>
           ))}

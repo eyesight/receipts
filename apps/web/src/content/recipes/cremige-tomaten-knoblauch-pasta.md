@@ -16,51 +16,45 @@ servings: 2
 prepTime: 5
 cookTime: 20
 difficulty: easy
-image: "/images/recipes/cremige-tomaten-knoblauch-pasta/cover.jpg"
 ingredients:
-  - amount: 500
+  - amount: "500"
     unit: "g"
     name: "große Fleischtomaten"
-  - amount: 250
+  - amount: "250"
     unit: "g"
     name: "Pasta nach Wahl (z. B. Rigatoni, Fusilli oder Tagliatelle)"
-  - amount: 5
-    unit: ~
+  - amount: "5"
     name: "Knoblauchzehen"
-  - amount: 3
+  - amount: "3"
     unit: "EL"
     name: "Olivenöl"
-  - amount: 200
+  - amount: "200"
     unit: "ml"
     name: "Hafersahne"
-  - amount: 2
+  - amount: "2"
     unit: "TL"
     name: "getrocknete italienische Kräuter"
-  - amount: 1
+  - amount: "1"
     unit: "TL"
     name: "Paprikapulver edelsüß"
-  - amount: 1
+  - amount: "1"
     unit: "EL"
     name: "Hefeflocken"
     isOptional: true
-  - amount: ~
-    unit: ~
+  -
     name: "Salz"
     note: "nach Geschmack"
-  - amount: ~
-    unit: ~
+  -
     name: "schwarzer Pfeffer"
     note: "nach Geschmack"
-  - amount: ~
-    unit: ~
+  -
     name: "Chili"
     note: "eine Prise"
     isOptional: true
-  - amount: ~
-    unit: ~
+  -
     name: "Pastawasser"
     note: "etwas"
-  - amount: 1
+  - amount: "1"
     unit: "Bund"
     name: "frischer Basilikum"
 steps:
@@ -94,7 +88,5 @@ steps:
     title: "Servieren"
 images: []
 createdAt: 2026-05-24
-updatedAt: 2026-05-24
+updatedAt: 2026-06-07
 ---
-
-Eine cremige Tomaten-Knoblauch-Pasta, die in nur 20 Minuten zubereitet ist. Vollständig vegan und unglaublich aromatisch.
