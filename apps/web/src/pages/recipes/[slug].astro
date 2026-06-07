@@ -141,5 +141,14 @@ const difficultyLabel: Record<string, string> = {
       <Content />
     </div>
 
+    {import.meta.env.DEV && (
+      <a
+        href={`/admin/recipes/${entry.slug}/edit`}
+        class="inline-block text-sm text-stone-400 underline hover:text-stone-700"
+      >
+        Rezept bearbeiten
+      </a>
+    )}
+
   </article>
 </BaseLayout>

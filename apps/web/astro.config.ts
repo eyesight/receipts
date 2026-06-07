@@ -110,6 +110,47 @@ function devApiPlugin(): Plugin {
           }
         }
 
+        // ── Recipe edit (PATCH /api/recipes/:slug) ────────────────────────────
+        const patchMatch = req.method === "PATCH" && req.url?.match(/^\/api\/recipes\/([^/?]+)$/);
+        if (patchMatch) {
+          const slug = patchMatch[1];
+          try {
+            const body = JSON.parse((await readBody(req)).toString());
+            const { updateRecipeFile } = await server.ssrLoadModule("/src/lib/content/save-recipe.ts");
+            updateRecipeFile(slug, {
+              title: body.title,
+              description: body.description,
+              category: body.category,
+              tags: body.tags ?? [],
+              servings: body.servings,
+              prepTime: body.prepTime,
+              cookTime: body.cookTime,
+              difficulty: body.difficulty,
+              image: body.imageUrl,
+              ingredients: (body.ingredients ?? []).map((i: any) => ({
+                name: i.name,
+                amount: i.amount != null ? String(i.amount) : undefined,
+                unit: i.unit,
+                note: i.note,
+                isOptional: i.isOptional ?? false,
+                group: i.group,
+              })),
+              steps: (body.steps ?? []).map((s: any) => ({
+                order: s.order,
+                text: s.description,
+                title: s.title,
+                tip: s.tip,
+                duration: s.duration,
+              })),
+            });
+            return send(res, { success: true });
+          } catch (err) {
+            const message = err instanceof Error ? err.message : String(err);
+            console.error("[edit]", err);
+            return send(res, { error: message }, 500);
+          }
+        }
+
         // ── Recipe form ───────────────────────────────────────────────────────
         if (req.url === "/api/recipes") {
           try {
@@ -157,5 +198,8 @@ export default defineConfig({
   ],
   vite: {
     plugins: [devApiPlugin()],
+    resolve: {
+      dedupe: ["react", "react-dom", "react-dom/server"],
+    },
   },
 });
