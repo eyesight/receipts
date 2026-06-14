@@ -12,7 +12,7 @@ DOCKER_CMD  = PATH="$(DOCKER_DIR):$$PATH" $(DOCKER)
 DATABASE_URL := postgresql://postgres:postgres@localhost:5433/recipes_dev
 export DATABASE_URL
 
-.PHONY: dev db\:up db\:down db\:reset db\:migrate db\:seed db\:studio help
+.PHONY: dev build preview deploy db\:up db\:down db\:reset db\:migrate db\:seed db\:studio help
 
 # ─── Development ──────────────────────────────────────────────────────────────
 
@@ -20,6 +20,18 @@ export DATABASE_URL
 dev:
 	$(MAKE) db\:up
 	pnpm dev
+
+## Build Astro app locally (output in apps/web/dist/)
+build:
+	pnpm build
+
+## Preview the built dist/ locally
+preview:
+	pnpm preview
+
+## Push to main and trigger GitHub Actions deploy
+deploy:
+	git push origin main
 
 # ─── Database ─────────────────────────────────────────────────────────────────
 
@@ -62,6 +74,9 @@ help:
 	@echo "Usage: make <target>"
 	@echo ""
 	@echo "  dev           Start Docker + dev server"
+	@echo "  build         Build Astro app locally"
+	@echo "  preview       Preview the built dist/ locally"
+	@echo "  deploy        Push to main (triggers GitHub Actions)"
 	@echo "  db:up         Start PostgreSQL + Adminer (background)"
 	@echo "  db:down       Stop containers"
 	@echo "  db:reset      Wipe DB, migrate, seed"

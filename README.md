@@ -196,6 +196,41 @@ pnpm --filter @recipes/web import:cleanup
 
 ---
 
+## Deploy
+
+### GitHub Secrets
+
+Before first deploy, add these secrets in **Settings → Secrets and variables → Actions**:
+
+| Secret | Value |
+|---|---|
+| `FTP_SERVER` | Hoststar FTP server (e.g. `ftp.hoststar.ch`) |
+| `FTP_USERNAME` | Hoststar FTP username |
+| `FTP_PASSWORD` | Hoststar FTP password |
+
+### Deploying
+
+```bash
+# Push to main — GitHub Actions builds and deploys automatically
+git push origin main
+# or
+make deploy
+```
+
+Build takes ~2 minutes. The workflow builds the Astro app and uploads `apps/web/dist/` to `/public_html/recipes/` on Hoststar via FTP.
+
+### Local build commands
+
+| Command | Description |
+|---|---|
+| `pnpm build` / `make build` | Test build locally (output in `apps/web/dist/`) |
+| `pnpm preview` / `make preview` | Preview the built dist/ locally |
+| `pnpm dev` | Local dev server |
+| `pnpm admin:new` | Create new recipe via CLI |
+| `make db:up` | Start local PostgreSQL (optional, for future use) |
+
+---
+
 ## Roadmap
 
 | Phase | Feature |
