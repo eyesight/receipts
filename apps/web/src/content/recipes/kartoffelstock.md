@@ -3,7 +3,7 @@ title: "Kartoffelstock"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 30
 cookTime: 10

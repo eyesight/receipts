@@ -3,7 +3,7 @@ title: "Soupless Tantanmen (Sichuan Style) mit vegetarischem Hack"
 description: ""
 category: "Hauptgericht"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 1
 prepTime: ~
 cookTime: 30

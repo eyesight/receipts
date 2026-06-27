@@ -3,7 +3,7 @@ title: "Orange \"Chicken\""
 description: ""
 category: "Snacks"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 40

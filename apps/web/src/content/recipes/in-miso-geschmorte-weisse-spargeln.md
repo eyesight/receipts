@@ -3,7 +3,7 @@ title: "In Miso geschmorte weisse Spargeln"
 description: "Rezept von noahnachofen_ auf Instagram"
 category: "Snacks"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 1
 prepTime: ~
 cookTime: 20

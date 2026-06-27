@@ -3,7 +3,7 @@ title: "Polenta"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 15
 cookTime: 35

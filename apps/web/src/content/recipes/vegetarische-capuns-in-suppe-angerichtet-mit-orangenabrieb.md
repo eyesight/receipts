@@ -3,7 +3,7 @@ title: "Vegetarische Capuns, in Suppe angerichtet, mit Orangenabrieb"
 description: ""
 category: "Soups And Stews"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 10
 cookTime: 20

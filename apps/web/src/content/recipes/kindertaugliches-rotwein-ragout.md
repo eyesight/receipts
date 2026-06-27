@@ -3,7 +3,7 @@ title: "Kindertaugliches \"Rotwein\"-Ragout"
 description: "Rotweinersatz ist noch in Experementierphase."
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 15
 cookTime: 25

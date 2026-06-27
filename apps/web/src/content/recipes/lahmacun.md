@@ -3,7 +3,7 @@ title: "Lahmacun"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 60
 cookTime: 60

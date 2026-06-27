@@ -3,7 +3,7 @@ title: "Gurken Salat Chinesisch"
 description: ""
 category: "Salads"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 10
 cookTime: 10

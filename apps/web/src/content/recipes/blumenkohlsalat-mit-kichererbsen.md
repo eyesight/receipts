@@ -3,7 +3,7 @@ title: "Blumenkohlsalat mit Kichererbsen"
 description: ""
 category: "Salads"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 20
 cookTime: 5

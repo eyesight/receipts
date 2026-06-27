@@ -3,7 +3,7 @@ title: "Familenmenu: Hummus"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 10
 cookTime: 10

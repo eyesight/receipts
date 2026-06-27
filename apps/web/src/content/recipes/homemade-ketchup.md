@@ -3,7 +3,7 @@ title: "Homemade Ketchup"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 15
 cookTime: 30

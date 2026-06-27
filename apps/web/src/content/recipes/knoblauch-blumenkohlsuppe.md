@@ -3,7 +3,7 @@ title: "Knoblauch Blumenkohlsuppe"
 description: ""
 category: "Soups And Stews"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 10
 cookTime: 30

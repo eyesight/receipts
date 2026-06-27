@@ -3,7 +3,7 @@ title: "Geröstete Cherry Tomaten Pasta"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 20
 cookTime: 40

@@ -3,7 +3,7 @@ title: "Ramen Tofu (by Vegantanmen)"
 description: ""
 category: "Snacks"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 20

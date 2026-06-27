@@ -3,7 +3,7 @@ title: "Panzanella – Italienischer Brotsalat"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 15
 cookTime: 15

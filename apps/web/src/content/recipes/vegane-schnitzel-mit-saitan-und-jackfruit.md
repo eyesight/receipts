@@ -3,7 +3,7 @@ title: "Vegane Schnitzel mit Saitan und Jackfruit"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 10
 cookTime: 25

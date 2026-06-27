@@ -3,7 +3,7 @@ title: "Im ganzen gerösteter Blumenkohl"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 20
 cookTime: 60

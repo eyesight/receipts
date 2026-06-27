@@ -3,7 +3,7 @@ title: "Vegetarische \"Hacktätschli\""
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: ~
 cookTime: 25

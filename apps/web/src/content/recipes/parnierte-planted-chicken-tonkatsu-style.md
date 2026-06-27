@@ -3,7 +3,7 @@ title: "Parnierte Planted Chicken Tonkatsu Style"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 20
 cookTime: 15

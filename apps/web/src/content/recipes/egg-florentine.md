@@ -3,7 +3,7 @@ title: "Egg Florentine"
 description: ""
 category: "Breakfast"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 5

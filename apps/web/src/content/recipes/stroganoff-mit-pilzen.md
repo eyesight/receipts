@@ -3,7 +3,7 @@ title: "Stroganoff mit Pilzen"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 60
 cookTime: 25

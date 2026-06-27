@@ -3,7 +3,7 @@ title: "Vegi Bolognese"
 description: "Portionenweise einfrieren. (ca. 540 g pro Portion)"
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: 15
 cookTime: 20

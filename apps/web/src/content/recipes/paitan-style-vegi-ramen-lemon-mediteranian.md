@@ -3,7 +3,7 @@ title: "Paitan Style Vegi Ramen – Lemon Mediteranian"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 3
 prepTime: ~
 cookTime: 25

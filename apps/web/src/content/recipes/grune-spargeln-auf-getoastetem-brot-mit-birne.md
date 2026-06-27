@@ -3,7 +3,7 @@ title: "Grüne Spargeln auf getoastetem Brot mit Birne"
 description: ""
 category: "Hauptgericht"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 15

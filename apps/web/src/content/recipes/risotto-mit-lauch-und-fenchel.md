@@ -3,7 +3,7 @@ title: "Risotto mit Lauch und Fenchel"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: ~
 cookTime: 25

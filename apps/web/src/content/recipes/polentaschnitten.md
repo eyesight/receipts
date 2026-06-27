@@ -3,7 +3,7 @@ title: "Polentaschnitten"
 description: ""
 category: "Desserts"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 15
 cookTime: 15

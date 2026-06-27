@@ -3,7 +3,7 @@ title: "Süsskartoffel Chill"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 20
 cookTime: 30

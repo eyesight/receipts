@@ -3,7 +3,7 @@ title: "Mexikanisch inspirierter Reis mit Bohnen"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: 5
 cookTime: 25

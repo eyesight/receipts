@@ -3,7 +3,7 @@ title: "Sauerteig Brot – Weizenweissmehl und Roggenvollkorn"
 description: ""
 category: "Breads"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 10
 prepTime: 10
 cookTime: 60

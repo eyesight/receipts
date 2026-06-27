@@ -3,7 +3,7 @@ title: "Gemischter Kichererbsensalat mit Tahini-Dressing"
 description: ""
 category: "Salads"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 12

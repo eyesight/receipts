@@ -3,7 +3,7 @@ title: "Auberginen Curry"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 30
 cookTime: 60

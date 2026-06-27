@@ -3,7 +3,7 @@ title: "Sauerteig Brot – Weizenweissmehl, Dinkelmehl und Roggenvollkorn"
 description: "Für 1 Brot an ca. 800 g"
 category: "Breads"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 10
 prepTime: ~
 cookTime: 10

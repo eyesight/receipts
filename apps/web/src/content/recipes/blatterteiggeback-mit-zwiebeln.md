@@ -3,7 +3,7 @@ title: "Blätterteiggebäck mit Zwiebeln"
 description: ""
 category: "Snacks"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 5

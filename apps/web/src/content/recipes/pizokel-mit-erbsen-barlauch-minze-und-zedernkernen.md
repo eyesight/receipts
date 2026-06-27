@@ -3,7 +3,7 @@ title: "Pizokel mit Erbsen, Bärlauch, Minze und Zedernkernen"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 1
 prepTime: 30
 cookTime: 10

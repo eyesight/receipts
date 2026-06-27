@@ -3,7 +3,7 @@ title: "Chimichurri"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 1
 prepTime: 5
 cookTime: 5

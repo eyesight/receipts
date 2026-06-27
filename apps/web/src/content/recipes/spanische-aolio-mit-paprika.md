@@ -3,7 +3,7 @@ title: "Spanische Aolio mit Paprika"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 15
 cookTime: 15

@@ -6,7 +6,7 @@ description: |
   Dank dem Agar Agar verdickt/gelatiert die Füllung, damit kann die Füllung in fester Form in die Teigtaschen abgefüllt werden. Beim backen verflüssigt sich die Füllung wieder, somit wird das Ganze schön saftig.
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 10
 prepTime: ~
 cookTime: 25

@@ -3,7 +3,7 @@ title: "Vegiburger mit Patty auf Pilzbasis"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 8
 prepTime: ~
 cookTime: 25

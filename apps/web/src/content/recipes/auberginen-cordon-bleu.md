@@ -3,7 +3,7 @@ title: "Auberginen Cordon Bleu"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 15

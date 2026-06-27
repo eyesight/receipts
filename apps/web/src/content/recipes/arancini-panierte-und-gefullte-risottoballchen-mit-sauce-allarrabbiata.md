@@ -3,7 +3,7 @@ title: "Arancini (panierte und gefüllte Risottobällchen) mit Sauce all’arrab
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 30

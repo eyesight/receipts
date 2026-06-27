@@ -3,7 +3,7 @@ title: "Vegetarische Chorizo mit Sojahack"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 20

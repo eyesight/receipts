@@ -3,7 +3,7 @@ title: "Tacos mit panierten Pilzen oder Tofuschnitzeln und Hot-Sauce"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: ~
 cookTime: 20

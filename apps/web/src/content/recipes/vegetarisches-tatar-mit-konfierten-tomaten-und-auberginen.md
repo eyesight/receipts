@@ -3,7 +3,7 @@ title: "Vegetarisches Tatar mit konfierten Tomaten und Auberginen"
 description: "Meiner Erfahrung nach ist das Rezept mit Tomaten + Auberginen am leckersten. Man kann es aber auch nur mit Auberginen oder Tomaten machen. Ein wenig Soja-Hack gibt dem Ganzen ein wenig mehr Biss. Im Winter kann man anstelle von frischen Tomaten auch Dosen-Tomaten verwenden, die zuvor abgetropft wurden (den abgegossenen Tomatensaft anderweitig verwenden.) Die Innereien der ausgehöhlten Tomaten friere ich jeweils ein und verarbeite die früher oder später mit weiteren Gemüseresten zu einer Gemüsebrühe."
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 5
 cookTime: 45

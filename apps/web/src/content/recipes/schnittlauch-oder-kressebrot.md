@@ -3,7 +3,7 @@ title: "Schnittlauch oder Kressebrot"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 3
 cookTime: 12

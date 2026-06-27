@@ -3,7 +3,7 @@ title: "Kartoffelgratin"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 10
 cookTime: 45

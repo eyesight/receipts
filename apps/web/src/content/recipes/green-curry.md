@@ -3,7 +3,7 @@ title: "Green Curry"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 3
 prepTime: 60
 cookTime: 20

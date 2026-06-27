@@ -3,7 +3,7 @@ title: "Garlic Tofu (a la Garlic Shrimps) – Chili-Öl"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 10
 cookTime: 20

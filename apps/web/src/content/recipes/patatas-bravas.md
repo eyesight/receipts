@@ -3,7 +3,7 @@ title: "Patatas Bravas"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 30

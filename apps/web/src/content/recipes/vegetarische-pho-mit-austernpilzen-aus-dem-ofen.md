@@ -3,7 +3,7 @@ title: "Vegetarische Pho mit Austernpilzen aus dem Ofen"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 15
 cookTime: 25

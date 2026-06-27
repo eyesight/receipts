@@ -3,7 +3,7 @@ title: "Pickled Anything"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 15
 cookTime: 30

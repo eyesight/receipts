@@ -3,7 +3,7 @@ title: "Vegetarische Suppe – inspiriert von Peruanischer Chupe di Camarones"
 description: ""
 category: "Main Course"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 45

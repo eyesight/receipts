@@ -3,7 +3,7 @@ title: "Baked Beans"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: ~
 cookTime: 60

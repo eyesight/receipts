@@ -3,7 +3,7 @@ title: "Persischer Shish Andaz – Walnuss‑Auberginen-Eintopf"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: ~
 cookTime: 90

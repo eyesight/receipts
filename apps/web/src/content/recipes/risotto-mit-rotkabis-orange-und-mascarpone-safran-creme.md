@@ -3,7 +3,7 @@ title: "Risotto mit Rotkabis, Orange und Mascarpone-Safran-Creme"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 30

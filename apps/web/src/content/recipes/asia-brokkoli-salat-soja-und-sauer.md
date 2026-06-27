@@ -3,7 +3,7 @@ title: "Asia Brokkoli Salat – Soja und Sauer"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 20

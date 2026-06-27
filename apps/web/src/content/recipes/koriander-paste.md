@@ -3,7 +3,7 @@ title: "Koriander-Paste"
 description: "Eine Art asiatische angehauchte Pesto. Perfekter Match für vietnamesische Bún Chay oder  Bahn Mi Sandwiches."
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 5
 cookTime: 5

@@ -3,7 +3,7 @@ title: "Fenchel mit Tofu an Zitronensauce"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 25
 cookTime: 10

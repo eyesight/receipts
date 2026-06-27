@@ -3,7 +3,7 @@ title: "Flammkuchen"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: 3
 cookTime: 12

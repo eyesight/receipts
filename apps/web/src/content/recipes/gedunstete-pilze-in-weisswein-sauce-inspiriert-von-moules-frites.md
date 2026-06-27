@@ -3,7 +3,7 @@ title: "Gedünstete Pilze in Weisswein-Sauce – inspiriert von \"Moules-Frites\
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 30

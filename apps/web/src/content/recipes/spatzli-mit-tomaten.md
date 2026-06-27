@@ -3,7 +3,7 @@ title: "Spätzli mit Tomaten"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 25
 cookTime: 10

@@ -3,7 +3,7 @@ title: "Kichererbsen Spinat"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 10

@@ -3,7 +3,7 @@ title: "Geschmorter Rotkohl mit Kartoffelstock"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 5
 cookTime: 40

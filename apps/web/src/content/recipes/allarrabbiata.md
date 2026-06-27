@@ -3,7 +3,7 @@ title: "All’arrabbiata"
 description: ""
 category: "Hauptgericht"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 15
 cookTime: 20

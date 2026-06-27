@@ -3,7 +3,7 @@ title: "Pizzateig für Neapolitan-Style-Pizza aus dem Ofen zuhause"
 description: "Für Teigballen an 300 g. Pizzamehl mit mindestens 13% Proteingehalt verwenden."
 category: "Snacks"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 30
 cookTime: 270

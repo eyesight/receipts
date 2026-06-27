@@ -3,7 +3,7 @@ title: "Vegetarische Jackfruit «Ribs»"
 description: "Passt super in Tacos"
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 12
 prepTime: 3
 cookTime: 12

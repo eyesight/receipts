@@ -3,7 +3,7 @@ title: "Rayu Chiliöl"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 10
 prepTime: 10
 cookTime: 10

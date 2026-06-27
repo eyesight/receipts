@@ -3,7 +3,7 @@ title: "Tantanmen Sichuan Style mit vegetarischem Hack, Mais und einem Ramenei"
 description: "Tare von Adam Liaw. Inspiriert von verschiedenen Rezepten aus dem Netz, adaptiert nach dem eigenen Geschmack. Die Idee mit dem Zusatz von Szechuan Pfeffer habe ich von einem Restaurantbesuch übernommen."
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 1
 prepTime: 20
 cookTime: 20

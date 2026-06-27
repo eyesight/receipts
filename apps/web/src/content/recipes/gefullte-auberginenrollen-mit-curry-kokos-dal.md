@@ -3,7 +3,7 @@ title: "Gefüllte Auberginenrollen mit Curry-Kokos-Dal"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 12

@@ -3,7 +3,7 @@ title: "Einfache Tonkatsu Sauce"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 10

@@ -3,7 +3,7 @@ title: "Baked Beans (Griechisch inspiriert)"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 6
 prepTime: 15
 cookTime: 15

@@ -3,7 +3,7 @@ title: "Chilicrisp – Chiliöl mit gehackten Erdnüssen"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 50

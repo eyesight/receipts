@@ -3,7 +3,7 @@ title: "Falafal mit Salaten"
 description: ""
 category: "Appetizers"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 10
 prepTime: ~
 cookTime: 1

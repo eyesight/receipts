@@ -3,7 +3,7 @@ title: "Risotto mit glasierten Feigen"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 25

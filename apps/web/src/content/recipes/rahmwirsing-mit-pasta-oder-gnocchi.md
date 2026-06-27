@@ -3,7 +3,7 @@ title: "Rahmwirsing mit Pasta oder Gnocchi"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: ~
 cookTime: 25

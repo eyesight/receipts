@@ -3,7 +3,7 @@ title: "BBQ Sauce – Chinesisch inspiriert"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 10
 prepTime: ~
 cookTime: 10

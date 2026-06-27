@@ -3,7 +3,7 @@ title: "Warmer Asia Brokkoli Salat mit Soja/Miso-Sauce"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 10
 cookTime: 20

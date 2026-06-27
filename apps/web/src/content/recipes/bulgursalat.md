@@ -3,7 +3,7 @@ title: "Bulgursalat"
 description: ""
 category: "Side Dishes"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 10
 cookTime: 10

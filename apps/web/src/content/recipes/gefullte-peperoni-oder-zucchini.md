@@ -3,7 +3,7 @@ title: "Gefüllte Peperoni oder Zucchini"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 15
 cookTime: 20

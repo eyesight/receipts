@@ -3,7 +3,7 @@ title: "\"Papayasalat\" mit Kohlrabi anstatt Papaya"
 description: ""
 category: "Soups And Stews"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 2
 prepTime: 10
 cookTime: 10

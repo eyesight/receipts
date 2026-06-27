@@ -3,7 +3,7 @@ title: "Vegetarischer Shepard’s Pie"
 description: ""
 category: "Dinner"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: 25
 cookTime: 25

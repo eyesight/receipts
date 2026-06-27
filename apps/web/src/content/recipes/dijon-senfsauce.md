@@ -3,7 +3,7 @@ title: "Dijon Senfsauce"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 40

@@ -3,7 +3,7 @@ title: "Pancake"
 description: ""
 category: "Desserts"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 10

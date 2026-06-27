@@ -3,7 +3,7 @@ title: "Veganer Lachsersatz"
 description: ""
 category: "Condiments And Sauces"
 tags:
-  []
+  - "Samsung Food Import"
 servings: 4
 prepTime: ~
 cookTime: 10
