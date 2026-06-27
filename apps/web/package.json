@@ -19,7 +19,9 @@
     "import:db": "tsx src/scripts/import-samsung-food/import.ts",
     "import:cleanup": "tsx src/scripts/import-samsung-food/cleanup.ts",
     "admin:new": "tsx src/scripts/admin/new-recipe.ts",
-    "admin:export": "tsx src/scripts/admin/export-db-recipes.ts"
+    "admin:export": "tsx src/scripts/admin/export-db-recipes.ts",
+    "admin:tag-samsung": "tsx src/scripts/admin/tag-samsung-imports.ts",
+    "admin:tag-samsung-files": "tsx src/scripts/admin/tag-samsung-files.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",

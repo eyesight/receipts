@@ -166,7 +166,7 @@ export async function saveOcrRecipe(
       tagId = created.id;
     }
 
-    await db.insert(recipeTags).values({ recipeId, tagId });
+    await db.insert(recipeTags).values({ recipeId, tagId, source: 'ocr' });
   }
 
   // Mark import as done

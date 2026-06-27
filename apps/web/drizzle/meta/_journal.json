@@ -15,6 +15,13 @@
       "when": 1779656666066,
       "tag": "0001_dazzling_alex_power",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1751023200000,
+      "tag": "0002_recipe_tags_source",
+      "breakpoints": true
     }
   ]
 }

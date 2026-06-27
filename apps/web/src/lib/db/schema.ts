@@ -172,6 +172,7 @@ export const recipeTags = pgTable(
     tagId: uuid('tag_id')
       .notNull()
       .references(() => tags.id, { onDelete: 'cascade' }),
+    source: sourceTypeEnum('source').notNull().default('manual'),
   },
   (table) => [primaryKey({ columns: [table.recipeId, table.tagId] })]
 );

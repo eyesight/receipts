@@ -190,7 +190,7 @@ export const PATCH: APIRoute = async ({ params, request }) => {
         .returning({ id: tags.id });
       tagId = created.id;
     }
-    await db.insert(recipeTags).values({ recipeId, tagId });
+    await db.insert(recipeTags).values({ recipeId, tagId, source: 'manual' });
   }
 
   // If publishing for the first time, update any linked ocr_import
