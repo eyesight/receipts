@@ -12,6 +12,7 @@ tags:
   - "Einfach"
   - "Orzo"
   - "Alltagsküche"
+  - "ocr"
 servings: 4
 prepTime: 5
 cookTime: 45

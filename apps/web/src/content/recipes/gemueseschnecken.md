@@ -11,6 +11,7 @@ tags:
   - "Snack"
   - "Schulsnack"
   - "Gesund"
+  - "ocr"
 servings: 11
 prepTime: 15
 cookTime: 20

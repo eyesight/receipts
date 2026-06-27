@@ -13,6 +13,7 @@ tags:
   - "Snack"
   - "Dinkel"
   - "Fingerfood"
+  - "ocr"
 servings: 4
 prepTime: 10
 cookTime: 18

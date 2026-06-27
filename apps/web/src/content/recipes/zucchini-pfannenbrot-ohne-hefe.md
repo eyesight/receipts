@@ -10,6 +10,7 @@ tags:
   - "Kindergericht"
   - "Vegetarisch"
   - "schnelles Brot"
+  - "ocr"
 servings: 4
 prepTime: 15
 cookTime: 20

@@ -12,6 +12,7 @@ tags:
   - "Wrap"
   - "Nach der Schule"
   - "Einfach"
+  - "ocr"
 prepTime: 10
 cookTime: 20
 difficulty: easy

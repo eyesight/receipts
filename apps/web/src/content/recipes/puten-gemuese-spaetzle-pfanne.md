@@ -10,6 +10,7 @@ tags:
   - "Spätzle"
   - "Familienküche"
   - "Nach der Schule"
+  - "ocr"
 prepTime: 15
 cookTime: 35
 difficulty: easy

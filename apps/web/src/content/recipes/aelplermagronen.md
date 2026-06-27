@@ -9,6 +9,7 @@ tags:
   - alpen
   - traditional
   - vegetarisch
+  - "ocr"
 servings: 4
 prepTime: 15
 cookTime: 35

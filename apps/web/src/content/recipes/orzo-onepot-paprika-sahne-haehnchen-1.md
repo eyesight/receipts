@@ -11,6 +11,7 @@ tags:
   - "Einfaches Rezept"
   - "Auflauf"
   - "Orzo"
+  - "ocr"
 prepTime: 5
 cookTime: 45
 difficulty: easy

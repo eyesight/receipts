@@ -21,7 +21,8 @@
     "admin:new": "tsx src/scripts/admin/new-recipe.ts",
     "admin:export": "tsx src/scripts/admin/export-db-recipes.ts",
     "admin:tag-samsung": "tsx src/scripts/admin/tag-samsung-imports.ts",
-    "admin:tag-samsung-files": "tsx src/scripts/admin/tag-samsung-files.ts"
+    "admin:tag-samsung-files": "tsx src/scripts/admin/tag-samsung-files.ts",
+    "admin:tag-ocr-files": "tsx src/scripts/admin/tag-ocr-files.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",

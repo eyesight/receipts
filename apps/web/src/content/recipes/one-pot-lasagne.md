@@ -11,6 +11,7 @@ tags:
   - "pasta"
   - "familienrezept"
   - "gesund"
+  - "ocr"
 servings: 3
 prepTime: 15
 cookTime: 25

@@ -12,6 +12,7 @@ tags:
   - "Knoblauch"
   - "Hauptgericht"
   - "unter 30 Minuten"
+  - "ocr"
 servings: 2
 prepTime: 5
 cookTime: 20
