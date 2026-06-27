@@ -1,0 +1,101 @@
+---
+title: "Blumenkohl-Bolognese mit Bandnudeln"
+description: "Eine überraschend leckere vegane Bolognese aus Blumenkohl – einfach zuzubereiten und voller Geschmack."
+category: "Hauptgericht"
+tags:
+  - "ocr"
+  - "Vegan"
+  - "Pasta"
+  - "Blumenkohl"
+  - "Italienisch"
+  - "Einfach"
+  - "Schnell"
+  - "Pflanzenbasiert"
+  - "Bolognese"
+servings: 2
+prepTime: 15
+cookTime: 30
+difficulty: easy
+ingredients:
+  - amount: "1"
+    name: "Blumenkohlkopf"
+    group: "Blumenkohl"
+  - amount: "3"
+    unit: "EL"
+    name: "Öl"
+    group: "Blumenkohl"
+  - amount: "1"
+    unit: "TL"
+    name: "Salz"
+    group: "Blumenkohl"
+  - amount: "1"
+    unit: "TL"
+    name: "Schwarzer Pfeffer"
+    group: "Blumenkohl"
+  - amount: "1"
+    unit: "TL"
+    name: "Paprikapulver, edelsüß"
+    group: "Blumenkohl"
+  - amount: "2"
+    unit: "TL"
+    name: "Oregano, getrocknet"
+    group: "Blumenkohl"
+  - amount: "2"
+    unit: "EL"
+    name: "Vegane Butter"
+    note: "oder vegane Margarine"
+    group: "Sauce"
+  - amount: "1"
+    name: "Rote Zwiebel"
+    group: "Sauce"
+  - amount: "2"
+    name: "Knoblauchzehen"
+    group: "Sauce"
+  - amount: "2"
+    unit: "EL"
+    name: "Tomatenmark"
+    group: "Sauce"
+  - amount: "60"
+    unit: "ml"
+    name: "Wasser"
+    group: "Sauce"
+  - amount: "175"
+    unit: "g"
+    name: "Pesto Rosso"
+    note: "150–200 g"
+    group: "Sauce"
+  - amount: "400"
+    unit: "g"
+    name: "Bandnudeln"
+    group: "Pasta"
+  - amount: "1"
+    unit: "Handvoll"
+    name: "Basilikum"
+    note: "frisch"
+    group: "Pasta"
+  - amount: "200"
+    unit: "ml"
+    name: "Pasta-Wasser"
+    note: "vor dem Abgießen entnehmen"
+    group: "Pasta"
+steps:
+  - order: 1
+    text: "Blätter vom Blumenkohl trennen und den Blumenkohl in kleine Stücke schneiden. Auf ein Backblech legen, Öl, Salz, schwarzen Pfeffer, Paprikapulver sowie getrockneten Oregano drüber geben und gut auf dem Backblech vermischen. Blumenkohl-Stücke bei 220 °C ca. 20 Minuten backen. In der Zwischenzeit die Nudeln vorkochen (vor dem Abgießen ca. 200 ml Pasta-Wasser entnehmen und zur Seite stellen)."
+    title: "Blumenkohl rösten"
+    tip: "Das Pasta-Wasser nicht vergessen abzuschöpfen, bevor die Nudeln abgegossen werden."
+    duration: 20
+  - order: 2
+    text: "Vegane Butter in einer Pfanne schmelzen, Zwiebeln in kleine Würfel schneiden, dazugeben und glasig braten. Knoblauch ergänzen, kurz anbraten, dann Tomatenmark ergänzen und ca. 2 Minuten anrösten."
+    title: "Sauce anbraten"
+    duration: 5
+  - order: 3
+    text: "Mit Wasser ablöschen, Pesto hinzufügen, alles miteinander verrühren und dann den gebackenen Blumenkohl dazugeben. Vorgekochte Pasta, frischen Basilikum und Pasta-Wasser in die Pfanne dazugeben, alle Komponenten miteinander verrühren und kurz köcheln lassen."
+    title: "Alles zusammenführen"
+    duration: 5
+  - order: 4
+    text: "Das Gericht anrichten und genießen!"
+    title: "Genießen"
+images: []
+createdAt: 2026-06-27
+updatedAt: 2026-06-27
+---
