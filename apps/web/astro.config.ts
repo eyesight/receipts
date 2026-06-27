@@ -62,7 +62,7 @@ function devApiPlugin(): Plugin {
               title: extracted.title,
               description: extracted.description,
               category: extracted.category,
-              tags: extracted.tags,
+              tags: ['ocr', ...extracted.tags],
               servings: extracted.servings,
               prepTime: extracted.prepTime,
               cookTime: extracted.cookTime,
