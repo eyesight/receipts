@@ -36,3 +36,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: apps/web/dist/
           server-dir: /public_html/recipes/
+          protocol: ftps
