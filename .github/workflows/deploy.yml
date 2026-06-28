@@ -28,12 +28,13 @@ jobs:
       - name: Build Astro
         run: pnpm build
 
-      - name: Deploy to Hoststar via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: apps/web/dist/
-          server-dir: /public_html/recipes/
-          port: 21
+      - name: Deploy to Hoststar via SFTP
+        run: |
+          sudo apt-get install -y lftp
+          lftp -e "
+            set sftp:auto-confirm yes;
+            set net:timeout 30;
+            open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }}:5544;
+            mirror -R --delete apps/web/dist/ /public_html/recipes/;
+            quit
+          "
