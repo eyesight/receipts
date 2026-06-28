@@ -20,14 +20,16 @@ const { title } = Astro.props;
     <header class="border-b border-stone-200 bg-white px-6 py-4">
       <nav class="mx-auto flex max-w-4xl items-center justify-between">
         <a href="/" class="text-lg font-semibold tracking-tight">Recipes</a>
-        <div class="flex gap-4">
-          <a href="/admin/ocr" class="text-sm text-stone-500 hover:text-stone-900">
-            Import via foto
-          </a>
-          <a href="/admin/new" class="text-sm text-stone-500 hover:text-stone-900">
-            Add recipe
-          </a>
-        </div>
+        {import.meta.env.DEV && (
+          <div class="flex gap-4">
+            <a href="/admin/ocr" class="text-sm text-stone-500 hover:text-stone-900">
+              Import via foto
+            </a>
+            <a href="/admin/new" class="text-sm text-stone-500 hover:text-stone-900">
+              Add recipe
+            </a>
+          </div>
+        )}
       </nav>
     </header>
     <main class="mx-auto max-w-4xl px-6 py-10">

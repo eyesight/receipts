@@ -43,6 +43,6 @@ jobs:
           set net:max-retries 3
           EOF
           echo "open sftp://${FTP_USERNAME}:${FTP_PASSWORD}@${FTP_SERVER}:5544" >> /tmp/lftp-script.txt
-          echo "mirror -R --delete apps/web/dist/ /public_html/recipes/" >> /tmp/lftp-script.txt
+          echo "mirror -R --delete apps/web/dist/ /" >> /tmp/lftp-script.txt
           echo "quit" >> /tmp/lftp-script.txt
           lftp -f /tmp/lftp-script.txt
