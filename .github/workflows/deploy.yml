@@ -45,6 +45,6 @@ jobs:
           EOF
           echo "open sftp://${FTP_USERNAME}:${FTP_PASSWORD}@${FTP_SERVER}:5544" >> /tmp/lftp-script.txt
           echo "lcd apps/web/dist" >> /tmp/lftp-script.txt
-          echo "mirror -R ." >> /tmp/lftp-script.txt
+          echo "mirror -R --delete ." >> /tmp/lftp-script.txt
           echo "quit" >> /tmp/lftp-script.txt
           lftp -f /tmp/lftp-script.txt
