@@ -20,6 +20,7 @@ function detectMimeType(buf: Buffer): { mime: string; ext: string } | null {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  if (!import.meta.env.DEV) return json({ error: 'Not found' }, 404);
   const buffer = Buffer.from(await request.arrayBuffer());
 
   if (buffer.length === 0) return json({ error: 'Kein Bild empfangen' }, 400);

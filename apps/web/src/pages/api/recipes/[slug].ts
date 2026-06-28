@@ -56,6 +56,7 @@ interface RecipeInput {
 }
 
 export const PATCH: APIRoute = async ({ params, request }) => {
+  if (!import.meta.env.DEV) return json({ error: 'Not found' }, 404);
   const { slug } = params;
   if (!slug) return json({ error: 'Missing slug' }, 400);
 

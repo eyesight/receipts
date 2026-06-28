@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import RecipeForm from "@/components/react/RecipeForm";
+
+if (!import.meta.env.DEV) {
+  return Astro.redirect("/");
+}
 ---
 
 <BaseLayout title="Add recipe">

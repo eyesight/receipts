@@ -19,6 +19,7 @@ function detectMimeType(buf: Buffer): string | null {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  if (!import.meta.env.DEV) return json({ error: 'Not found' }, 404);
   try {
     const buffer = Buffer.from(await request.arrayBuffer());
 

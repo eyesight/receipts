@@ -13,6 +13,7 @@ interface RecipeInput {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  if (!import.meta.env.DEV) return json({ error: 'Not found' }, 404);
   const body = await request.json() as RecipeInput;
 
   if (!body.title?.trim()) return json({ error: 'Title is required' }, 400);

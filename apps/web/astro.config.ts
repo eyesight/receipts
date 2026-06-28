@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import { mkdir, writeFile } from "fs/promises";
@@ -190,8 +189,7 @@ function devApiPlugin(): Plugin {
 // ─── Astro config ─────────────────────────────────────────────────────────────
 
 export default defineConfig({
-  output: "hybrid",
-  adapter: node({ mode: "standalone" }),
+  output: "static",
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),

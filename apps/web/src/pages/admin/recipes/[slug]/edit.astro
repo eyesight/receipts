@@ -5,6 +5,10 @@ import { getEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import RecipeEditForm from "@/components/react/RecipeEditForm";
 
+if (!import.meta.env.DEV) {
+  return Astro.redirect("/");
+}
+
 const { slug } = Astro.params;
 const entry = await getEntry("recipes", slug!);
 
