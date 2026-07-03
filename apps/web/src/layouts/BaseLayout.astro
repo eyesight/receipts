@@ -9,31 +9,78 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} — Recipes</title>
+    <title>{title} — Rezepte</title>
   </head>
-  <body class="min-h-screen bg-stone-50 text-stone-900 antialiased">
-    <header class="border-b border-stone-200 bg-white px-6 py-4">
-      <nav class="mx-auto flex max-w-4xl items-center justify-between">
-        <a href="/" class="text-lg font-semibold tracking-tight">Recipes</a>
+  <body>
+
+    <header style="position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;">
+      <div class="site-container" style="display:flex;justify-content:space-between;align-items:center;">
+        <a
+          href="/"
+          style="
+            font-family:'Montserrat',sans-serif;
+            font-weight:500;
+            font-size:var(--font-logo);
+            text-transform:uppercase;
+            letter-spacing:4.05px;
+            padding:30px 0;
+            display:inline-flex;
+            align-items:center;
+            color:var(--color-blacky);
+            text-decoration:none;
+            transition:color 0.2s ease;
+          "
+          onmouseover="this.style.color='var(--color-turkies)'"
+          onmouseout="this.style.color='var(--color-blacky)'"
+        >
+          Rezepte
+        </a>
         {import.meta.env.DEV && (
-          <div class="flex gap-4">
-            <a href="/admin/ocr" class="text-sm text-stone-500 hover:text-stone-900">
-              Import via foto
+          <nav style="display:flex;gap:2rem;">
+            <a
+              href="/admin/ocr"
+              style="font-family:'Montserrat',sans-serif;font-size:0.875rem;color:rgba(40,44,41,0.4);text-decoration:none;transition:color 0.2s ease;"
+            >
+              Foto-Import
             </a>
-            <a href="/admin/new" class="text-sm text-stone-500 hover:text-stone-900">
-              Add recipe
+            <a
+              href="/admin/new"
+              style="font-family:'Montserrat',sans-serif;font-size:0.875rem;color:rgba(40,44,41,0.4);text-decoration:none;transition:color 0.2s ease;"
+            >
+              + Neues Rezept
             </a>
-          </div>
+          </nav>
         )}
-      </nav>
+      </div>
     </header>
-    <main class="mx-auto max-w-4xl px-6 py-10">
-      <slot />
+
+    <main style="flex:1 0 auto;margin-top:calc(var(--spacing-l) - 1px);">
+      <div class="site-container" style="padding-top:var(--spacing-s);padding-bottom:var(--spacing-l);">
+        <slot />
+      </div>
     </main>
+
+    <footer style="flex-shrink:0;background:#fff;padding-top:var(--spacing-ml);">
+      <div style="background:var(--color-turkies);padding:var(--gutter) 0;">
+        <div class="site-container" style="display:flex;justify-content:space-between;align-items:center;">
+          <p style="font-family:'Montserrat',sans-serif;font-size:0.875rem;color:#fff;">
+            copyright © {new Date().getFullYear()}
+          </p>
+          {import.meta.env.DEV && (
+            <nav style="display:flex;gap:1.5rem;">
+              <a href="/admin/ocr" style="font-family:'Montserrat',sans-serif;font-size:0.875rem;color:#fff;">
+                Admin
+              </a>
+            </nav>
+          )}
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>
