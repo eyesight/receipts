@@ -265,7 +265,7 @@
 }
 
 /* ─── Responsive overrides ───────────────────────────────────────────────── */
-@media (min-width: 600px) {
+@media (min-width: 521px) {
   .site-container {
     width: calc(100% - 120px);
   }
@@ -276,10 +276,9 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 769px) {
   .site-container {
     width: 75.585%;
-    max-width: 1440px;
   }
 
   .tile {
