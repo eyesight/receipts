@@ -114,7 +114,7 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
 
   <!-- Random recipes slideshow — glace's Slideshow component equivalent -->
   <div style="margin-top:var(--spacing-l);">
-    <RandomRecipes client:load recipes={recipeProps} />
+    <RandomRecipes client:only="react" recipes={recipeProps} />
   </div>
 
 </BaseLayout>
