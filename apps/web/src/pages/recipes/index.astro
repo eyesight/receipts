@@ -7,8 +7,7 @@ const allRecipes = await getCollection("recipes");
 const recipes = allRecipes
   .sort((a: CollectionEntry<"recipes">, b: CollectionEntry<"recipes">) =>
     b.data.createdAt.getTime() - a.data.createdAt.getTime()
-  )
-  .slice(0, 12);
+  );
 ---
 
 <BaseLayout title="Neueste Rezepte">
@@ -33,9 +32,9 @@ const recipes = allRecipes
     ) : (
       <div>
         <h2 style="margin-bottom:var(--spacing-s);">{recipes.length} Rezepte</h2>
-        <ul class="tiles-grid" style="list-style:none;padding:0;margin:0;">
-          {recipes.map((r: CollectionEntry<"recipes">) => (
-            <li class="tile">
+        <ul id="recipes-list" class="tiles-grid" style="list-style:none;padding:0;margin:0;">
+          {recipes.map((r: CollectionEntry<"recipes">, i: number) => (
+            <li class="tile" data-index={i} style={i >= 9 ? "display:none;" : ""}>
               <a href={`/recipes/${r.slug}`} style="display:block;text-decoration:none;color:inherit;">
                 {r.data.image && (
                   <div class="tile-image" style="aspect-ratio:16/9;background:#fff;">
@@ -58,6 +57,13 @@ const recipes = allRecipes
             </li>
           ))}
         </ul>
+        {recipes.length > 9 && (
+          <div style="text-align:center;margin-top:var(--spacing-l);">
+            <button id="load-more-btn" class="btn-primary">
+              Load more
+            </button>
+          </div>
+        )}
       </div>
     )
   }
@@ -73,3 +79,21 @@ const recipes = allRecipes
     color: var(--color-turkies);
   }
 </style>
+
+<script>
+  const btn = document.getElementById("load-more-btn");
+  if (btn) {
+    let shown = 9;
+    const PAGE = 9;
+    btn.addEventListener("click", () => {
+      const items = document.querySelectorAll<HTMLElement>("#recipes-list li[data-index]");
+      const next = shown + PAGE;
+      items.forEach((item) => {
+        const idx = parseInt(item.dataset.index ?? "0", 10);
+        if (idx >= shown && idx < next) item.style.display = "";
+      });
+      shown = next;
+      if (shown >= items.length) btn.parentElement!.style.display = "none";
+    });
+  }
+</script>

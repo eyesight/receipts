@@ -73,7 +73,6 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
         {recipes.map((r: CollectionEntry<"recipes">) => (
           <li class="tile" data-category={r.data.category ?? ""} data-title={r.data.title.toLowerCase()}>
             <a href={`/recipes/${r.slug}`} style="display:block;text-decoration:none;color:inherit;">
-              <!-- Image wrapper with teal hover overlay -->
               {r.data.image && (
                 <div class="tile-image" style="aspect-ratio:16/9;background:#fff;">
                   <img
@@ -83,7 +82,6 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
                   />
                 </div>
               )}
-              <!-- Tile content -->
               <div style="padding:1rem 0 4rem;">
                 <h3 class="tile-anchor" style="margin-bottom:0;">{r.data.title}</h3>
                 {r.data.category && (
@@ -96,6 +94,11 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
           </li>
         ))}
       </ul>
+      <div id="load-more-wrap" style="text-align:center;margin-top:var(--spacing-l);display:none;">
+        <button id="load-more-btn" class="btn-primary">
+          Load more
+        </button>
+      </div>
     )
   }
 
@@ -127,36 +130,52 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
   const grid = document.getElementById("recipe-grid");
   const tilesTitle = document.getElementById("tiles-title");
   const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
+  const loadMoreWrap = document.getElementById("load-more-wrap");
+  const loadMoreBtn = document.getElementById("load-more-btn");
 
+  const PAGE = 9;
   let activeCategory = "all";
   let searchQuery = "";
+  let loadedCount = PAGE;
 
   function applyFilters() {
-    const allItems = grid?.querySelectorAll<HTMLLIElement>("li[data-category]") ?? [];
-    let visibleCount = 0;
-    allItems.forEach((li) => {
+    const allItems = Array.from(grid?.querySelectorAll<HTMLLIElement>("li[data-category]") ?? []);
+    const matching = allItems.filter((li) => {
       const matchesCategory = activeCategory === "all" || li.dataset.category === activeCategory;
       const matchesSearch = li.dataset.title?.includes(searchQuery) ?? true;
-      const visible = matchesCategory && matchesSearch;
-      li.style.display = visible ? "" : "none";
-      if (visible) visibleCount++;
+      return matchesCategory && matchesSearch;
     });
-    if (tilesTitle) tilesTitle.textContent = `${visibleCount} Rezepte`;
+
+    allItems.forEach((li) => (li.style.display = "none"));
+    matching.slice(0, loadedCount).forEach((li) => (li.style.display = ""));
+
+    if (tilesTitle) tilesTitle.textContent = `${matching.length} Rezepte`;
+
+    if (loadMoreWrap) {
+      loadMoreWrap.style.display = matching.length > loadedCount ? "" : "none";
+    }
   }
+
+  loadMoreBtn?.addEventListener("click", () => {
+    loadedCount += PAGE;
+    applyFilters();
+  });
 
   filter?.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest("[data-filter]") as HTMLButtonElement | null;
     if (!btn) return;
     activeCategory = btn.dataset.filter ?? "all";
-    filter.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((b) => {
-      b.classList.remove("active-tag");
-    });
+    filter.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((b) => b.classList.remove("active-tag"));
     btn.classList.add("active-tag");
+    loadedCount = PAGE;
     applyFilters();
   });
 
   searchInput?.addEventListener("input", () => {
     searchQuery = searchInput.value.toLowerCase();
+    loadedCount = PAGE;
     applyFilters();
   });
+
+  applyFilters();
 </script>
