@@ -91,40 +91,16 @@ export default function RandomRecipes({ recipes }: Props) {
             style={{ width: "60%", maxWidth: "560px" }}
           >
             <div className="px-3">
-              <a href={`/recipes/${recipe.slug}`} className="block group">
-                <div className="relative w-full overflow-hidden bg-white border-4 border-turkies"
-                  style={{ aspectRatio: "91/51" }}>
-                  {recipe.image ? (
+              <a href={`/recipes/${recipe.slug}`} style={{ display: "block", textDecoration: "none", color: "inherit" }}>
+                {recipe.image && (
+                  <div className="tile-image" style={{ aspectRatio: "91/51", background: "#fff" }}>
                     <img
                       src={recipe.image}
                       alt={recipe.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                     />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <svg
-                        className="w-1/2 h-auto text-turkies"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 100 120"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={3}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <circle cx="50" cy="68" r="28" />
-                        <line x1="8" y1="5" x2="8" y2="26" />
-                        <line x1="12" y1="5" x2="12" y2="26" />
-                        <line x1="16" y1="5" x2="16" y2="26" />
-                        <path d="M8 26 Q8 33 12 33 Q16 33 16 26" />
-                        <line x1="12" y1="33" x2="12" y2="115" />
-                        <line x1="88" y1="5" x2="88" y2="115" />
-                        <path d="M88 5 Q82 5 82 26 L88 26" />
-                      </svg>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-[#50e3c2] opacity-0 group-hover:opacity-25 transition-opacity duration-300" />
-                </div>
+                  </div>
+                )}
                 <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
                   <h2
                     className="swiper-slide-title"
