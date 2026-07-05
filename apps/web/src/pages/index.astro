@@ -71,7 +71,17 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
     ) : (
       <ul class="tiles-grid" id="recipe-grid" style="list-style:none;padding:0;margin:0;">
         {recipes.map((r: CollectionEntry<"recipes">) => (
-          <li class="tile" data-category={r.data.category ?? ""} data-title={r.data.title.toLowerCase()}>
+          <li
+            class="tile"
+            data-category={r.data.category ?? ""}
+            data-title={r.data.title.toLowerCase()}
+            data-search={[
+              r.data.title,
+              ...(r.data.ingredients ?? []).map((i) => i.name),
+              ...(r.data.tags ?? []),
+              r.data.description ?? "",
+            ].join(" ").toLowerCase()}
+          >
             <a href={`/recipes/${r.slug}`} style="display:block;text-decoration:none;color:inherit;">
               {r.data.image && (
                 <div class="tile-image" style="aspect-ratio:16/9;background:#fff;">
@@ -142,7 +152,7 @@ const recipeProps = recipes.map((r: CollectionEntry<"recipes">) => ({
     const allItems = Array.from(grid?.querySelectorAll<HTMLLIElement>("li[data-category]") ?? []);
     const matching = allItems.filter((li) => {
       const matchesCategory = activeCategory === "all" || li.dataset.category === activeCategory;
-      const matchesSearch = li.dataset.title?.includes(searchQuery) ?? true;
+      const matchesSearch = li.dataset.search?.includes(searchQuery) ?? true;
       return matchesCategory && matchesSearch;
     });
 
