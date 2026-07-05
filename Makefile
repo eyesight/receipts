@@ -12,7 +12,9 @@ DOCKER_CMD  = PATH="$(DOCKER_DIR):$$PATH" $(DOCKER)
 DATABASE_URL := postgresql://postgres:postgres@localhost:5433/recipes_dev
 export DATABASE_URL
 
-.PHONY: dev build preview deploy db\:up db\:down db\:reset db\:migrate db\:seed db\:studio help
+-include apps/web/.env.local
+
+.PHONY: dev build preview deploy deploy-images db\:up db\:down db\:reset db\:migrate db\:seed db\:studio help
 
 # ─── Development ──────────────────────────────────────────────────────────────
 
@@ -32,6 +34,19 @@ preview:
 ## Push to main and trigger GitHub Actions deploy
 deploy:
 	git push origin main
+
+## Upload recipe images directly to FTP (no git required)
+## Requires FTP_SERVER, FTP_USERNAME, FTP_PASSWORD in .env.local
+deploy-images:
+	@test -n "$(FTP_SERVER)" || (echo "Error: set FTP_SERVER, FTP_USERNAME, FTP_PASSWORD in .env.local"; exit 1)
+	lftp -e " \
+		set sftp:auto-confirm yes; \
+		set sftp:connect-program \"ssh -oHostKeyAlgorithms=+ssh-rsa,ssh-dss -oKexAlgorithms=+diffie-hellman-group14-sha1\"; \
+		set net:timeout 30; \
+		set net:max-retries 2; \
+		open sftp://$(FTP_USERNAME):$(FTP_PASSWORD)@$(FTP_SERVER):5544; \
+		mirror -R apps/web/public/images/recipes/ images/recipes/; \
+		quit"
 
 # ─── Database ─────────────────────────────────────────────────────────────────
 
@@ -77,6 +92,7 @@ help:
 	@echo "  build         Build Astro app locally"
 	@echo "  preview       Preview the built dist/ locally"
 	@echo "  deploy        Push to main (triggers GitHub Actions)"
+	@echo "  deploy-images Upload recipe images directly to FTP"
 	@echo "  db:up         Start PostgreSQL + Adminer (background)"
 	@echo "  db:down       Stop containers"
 	@echo "  db:reset      Wipe DB, migrate, seed"
