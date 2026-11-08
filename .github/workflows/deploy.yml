@@ -38,7 +38,7 @@ jobs:
           sudo apt-get install -y lftp
           cat > /tmp/lftp-script.txt << 'EOF'
           set sftp:auto-confirm yes
-          set sftp:connect-program "ssh -oHostKeyAlgorithms=+ssh-rsa,ssh-dss -oKexAlgorithms=+diffie-hellman-group14-sha1"
+          set sftp:connect-program "ssh -oHostKeyAlgorithms=+ssh-rsa-oKexAlgorithms=+diffie-hellman-group14-sha1"
           set net:timeout 30
           set net:max-retries 2
           set mirror:parallel-transfer-count 4
